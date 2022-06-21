@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct Movies: Codable {
+    let results: [Movie]
+}
+
 struct Movie: Codable {
     let title: String
     let overview: String

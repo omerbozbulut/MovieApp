@@ -10,7 +10,7 @@ import UIKit
 //MARK: - Kingfisher Extension
 extension SplashScreenViewController: KingfisherDelegate {
     func completeDownload() {
-        let delayInSeconds = 0.0
+        let delayInSeconds = 2.5
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
             self.tabBarConfigure()
         }

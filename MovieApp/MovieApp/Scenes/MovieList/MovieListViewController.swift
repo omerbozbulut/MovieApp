@@ -34,6 +34,7 @@ class MovieListViewController: UIViewController {
         let tableView = UITableView()
         tableView.backgroundColor = .white
         tableView.separatorColor = .white
+        tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: Constants.tableViewIdentifier)
         return tableView
     }()
     

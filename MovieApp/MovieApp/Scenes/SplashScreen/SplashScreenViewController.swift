@@ -21,14 +21,14 @@ class SplashScreenViewController: UIViewController {
     
     let tabBarVC = UITabBarController()
     let animationView = AnimationView()
-    var kingfisherService = KingfisherService()
+    var service = WebService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        kingfisherService.delegate = self
+        service.delegate = self
         
         configure()
-        kingfisherService.getData()
+        service.performRequest(urlString: service.fetchUpComingMoviesURL())
     }
     
     func configure(){
