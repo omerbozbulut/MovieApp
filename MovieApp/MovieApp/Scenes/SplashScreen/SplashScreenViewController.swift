@@ -14,23 +14,27 @@ class SplashScreenViewController: UIViewController {
     let titleLabel: CLTypingLabel = {
         let title = CLTypingLabel()
         title.text = Constants.Titles.splashScreenLabel
-        title.font = UIFont(name: Constants.Fonts.helveticaBold, size: 55)
+        title.font = UIFont(name: Constants.Fonts.TrebuchetMSBold, size: 55)
         title.textColor = .systemIndigo
         return title
     }()
-    
+    let tabBarVC = UITabBarController()
     let animationView = AnimationView()
+    var kingfisherService = KingfisherService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        kingfisherService.delegate = self
         
         configure()
+        kingfisherService.getData()
     }
-        
+    
     func configure(){
         view.addSubview(titleLabel)
         view.addSubview(animationView)
         view.backgroundColor = .white
+        
         configureConstraints()
         animationViewDesign()
         animationView.play(completion: .none)
@@ -42,6 +46,24 @@ class SplashScreenViewController: UIViewController {
         animationView.contentMode = .scaleToFill
     }
     
+    private func tabBarConfigure(){
+        let movieListVC = MovieListViewController()
+        let bookmarksVC = UIViewController()
+        movieListVC.title = "Movies"
+        bookmarksVC.title = "Bookmarks"
+        tabBarVC.modalPresentationStyle = .fullScreen
+        tabBarVC.setViewControllers([movieListVC,bookmarksVC], animated: false)
+        present(tabBarVC,animated: true)
+    }
+}
+
+extension SplashScreenViewController: KingfisherDelegate {
+    func completeDownload() {
+        let delayInSeconds = 2.2
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
+            self.tabBarConfigure()
+        }
+    }
 }
 
 //MARK: - UIColor Extension
