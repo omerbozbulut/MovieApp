@@ -18,6 +18,7 @@ class SplashScreenViewController: UIViewController {
         title.textColor = .systemIndigo
         return title
     }()
+    
     let tabBarVC = UITabBarController()
     let animationView = AnimationView()
     var kingfisherService = KingfisherService()
@@ -37,20 +38,23 @@ class SplashScreenViewController: UIViewController {
         
         configureConstraints()
         animationViewDesign()
-        animationView.play(completion: .none)
     }
     
     func animationViewDesign(){
         animationView.animation = Animation.named(Constants.animationName)
         animationView.loopMode = .loop
         animationView.contentMode = .scaleToFill
+        animationView.play(completion: .none)
     }
     
-    private func tabBarConfigure(){
+//MARK: - Tab bar
+    func tabBarConfigure(){
         let movieListVC = MovieListViewController()
         let bookmarksVC = UIViewController()
-        movieListVC.title = "Movies"
-        bookmarksVC.title = "Bookmarks"
+        
+        movieListVC.title = Constants.tabBarTitles.movieListScene
+        bookmarksVC.title = Constants.tabBarTitles.bookmarksScene
+        
         tabBarVC.modalPresentationStyle = .fullScreen
         tabBarVC.tabBar.tintColor = .white
         tabBarVC.tabBar.backgroundColor = .black
@@ -62,45 +66,6 @@ class SplashScreenViewController: UIViewController {
         for img in 0..<Constants.tabBarImages.count{
             items[img].image = UIImage(systemName: Constants.tabBarImages[img])
         }
-        
         present(tabBarVC,animated: false)
-    }
-}
-
-extension SplashScreenViewController: KingfisherDelegate {
-    func completeDownload() {
-        let delayInSeconds = 2.2
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
-            self.tabBarConfigure()
-        }
-    }
-}
-
-//MARK: - UIColor Extension
-
-extension UIColor {
-    public convenience init?(hex: String) {
-        let r, g, b, a: CGFloat
-
-        if hex.hasPrefix("#") {
-            let start = hex.index(hex.startIndex, offsetBy: 1)
-            let hexColor = String(hex[start...])
-
-            if hexColor.count == 8 {
-                let scanner = Scanner(string: hexColor)
-                var hexNumber: UInt64 = 0
-
-                if scanner.scanHexInt64(&hexNumber) {
-                    r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
-                    g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
-                    b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
-                    a = CGFloat(hexNumber & 0x000000ff) / 255
-
-                    self.init(red: r, green: g, blue: b, alpha: a)
-                    return
-                }
-            }
-        }
-        return nil
     }
 }
