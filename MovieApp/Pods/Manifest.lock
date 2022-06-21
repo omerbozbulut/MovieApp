@@ -1,0 +1,20 @@
+PODS:
+  - CLTypingLabel (0.4.0)
+  - lottie-ios (3.3.0)
+
+DEPENDENCIES:
+  - CLTypingLabel
+  - lottie-ios
+
+SPEC REPOS:
+  trunk:
+    - CLTypingLabel
+    - lottie-ios
+
+SPEC CHECKSUMS:
+  CLTypingLabel: 95a7d1faf7e3d1d952cd11cb0491d17d80c50934
+  lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
+
+PODFILE CHECKSUM: 7e0ddab70ff00be62943e532ddf16474c6b451b3
+
+COCOAPODS: 1.11.3
