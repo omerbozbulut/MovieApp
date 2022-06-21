@@ -12,7 +12,12 @@ struct Constants {
     static let animationName = "movie"
     static let tabBarImages = ["film","bookmark"]
     
-    struct Fonts{
+    struct tabBarTitles {
+        static let movieListScene = "Movies"
+        static let bookmarksScene = "Bookmarks"
+    }
+    
+    struct Fonts {
         static let TrebuchetMSBold = "TrebuchetMS-Bold"
         static let helvetica = "Helvetica"
     }
