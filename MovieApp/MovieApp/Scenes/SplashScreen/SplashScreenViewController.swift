@@ -41,7 +41,7 @@ class SplashScreenViewController: UIViewController {
     }
     
     func animationViewDesign(){
-        animationView.animation = Animation.named("movie")
+        animationView.animation = Animation.named(Constants.animationName)
         animationView.loopMode = .loop
         animationView.contentMode = .scaleToFill
     }
@@ -52,8 +52,18 @@ class SplashScreenViewController: UIViewController {
         movieListVC.title = "Movies"
         bookmarksVC.title = "Bookmarks"
         tabBarVC.modalPresentationStyle = .fullScreen
+        tabBarVC.tabBar.tintColor = .white
+        tabBarVC.tabBar.backgroundColor = .black
+        tabBarVC.tabBar.barTintColor = .white
         tabBarVC.setViewControllers([movieListVC,bookmarksVC], animated: false)
-        present(tabBarVC,animated: true)
+
+        guard let items = tabBarVC.tabBar.items else {return}
+        
+        for img in 0..<Constants.tabBarImages.count{
+            items[img].image = UIImage(systemName: Constants.tabBarImages[img])
+        }
+        
+        present(tabBarVC,animated: false)
     }
 }
 

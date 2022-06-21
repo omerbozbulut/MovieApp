@@ -9,7 +9,9 @@ import Foundation
 
 struct Constants {
     
-    static let animationName = "developer"
+    static let animationName = "movie"
+    static let tabBarImages = ["film","bookmark"]
+    
     struct Fonts{
         static let TrebuchetMSBold = "TrebuchetMS-Bold"
         static let helvetica = "Helvetica"
