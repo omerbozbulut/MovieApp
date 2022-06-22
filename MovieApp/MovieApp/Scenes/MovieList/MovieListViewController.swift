@@ -32,11 +32,13 @@ class MovieListViewController: UIViewController {
     
     let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .white
-        tableView.separatorColor = .white
+        tableView.rowHeight = 144
         tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: Constants.tableViewIdentifier)
+        tableView.separatorColor = .black
         return tableView
     }()
+    
+    let tableCellViewModel = TableCellViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
