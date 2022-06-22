@@ -11,15 +11,17 @@ extension MovieTableViewCell{
     func makeConstraints(){
         makeCustomViewConstraints()
         makeImageConstraints()
+        makeStarImageConstraints()
         makeTitleConstraints()
         makeBookmarkConstraints()
+        makeVoteConstraints()
     }
     
     private func makeCustomViewConstraints(){
         customView.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview().offset(16)
-            make.bottom.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-16)
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.bottom.equalToSuperview().offset(-16)
         }
     }
     
@@ -28,6 +30,13 @@ extension MovieTableViewCell{
             make.top.leading.equalToSuperview().offset(8)
             make.bottom.equalTo(-8)
             make.width.equalTo(64)
+        }
+    }
+    
+    private func makeStarImageConstraints(){
+        starImage.snp.makeConstraints { make in
+            make.leading.equalTo(image.snp.trailing).offset(8)
+            make.bottom.equalToSuperview().offset(-16)
         }
     }
     
@@ -42,7 +51,15 @@ extension MovieTableViewCell{
     private func makeBookmarkConstraints(){
         bookmark.snp.makeConstraints { make in
             make.trailing.bottom.equalToSuperview().offset(-8)
+            make.width.equalTo(24)
             make.height.equalTo(32)
+        }
+    }
+    
+    private func makeVoteConstraints(){
+        vote.snp.makeConstraints { make in
+            make.leading.equalTo(starImage.snp.trailing).offset(8)
+            make.bottom.equalToSuperview().offset(-16)
         }
     }
     

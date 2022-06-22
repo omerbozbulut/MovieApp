@@ -23,26 +23,36 @@ class MovieTableViewCell: UITableViewCell {
         return image
     }()
     
+    let starImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(systemName: "star.fill")
+        image.tintColor = .systemYellow
+        return image
+    }()
+    
     let title: UILabel = {
         let title = UILabel()
         title.textColor = .white
         title.lineBreakMode = .byWordWrapping
         title.numberOfLines = 0
+        title.font = UIFont(name: Constants.Fonts.TrebuchetMSBold, size: 20)
         return title
     }()
     
     let bookmark: UIButton = {
         let bookmark = UIButton()
         bookmark.setTitle("", for: .normal)
-        bookmark.setImage(UIImage(systemName: "bookmarks"), for: .normal)
         bookmark.addTarget(self, action: #selector(addBookmark), for: .touchUpInside)
         bookmark.tintColor = .white
+        bookmark.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
+        bookmark.imageView?.contentMode = .scaleAspectFill
         return bookmark
     }()
     
     let vote: UILabel = {
         let vote = UILabel()
         vote.textColor = .systemYellow
+        vote.font = UIFont(name: "helvetica", size: 18)
         return vote
     }()
     
@@ -60,6 +70,8 @@ class MovieTableViewCell: UITableViewCell {
         customView.addSubview(image)
         customView.addSubview(title)
         customView.addSubview(bookmark)
+        customView.addSubview(vote)
+        customView.addSubview(starImage)
         contentView.addSubview(customView)
         
         selectionStyle = .none

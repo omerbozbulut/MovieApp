@@ -19,8 +19,16 @@ class SplashScreenViewController: UIViewController {
         return title
     }()
     
+    let animationView: AnimationView = {
+        let animation = AnimationView()
+        animation.animation = Animation.named(Constants.animationName)
+        animation.loopMode = .loop
+        animation.contentMode = .scaleToFill
+        animation.play(completion: .none)
+        return animation
+    }()
+    
     let tabBarVC = UITabBarController()
-    let animationView = AnimationView()
     var service = WebService()
     
     override func viewDidLoad() {
@@ -28,7 +36,9 @@ class SplashScreenViewController: UIViewController {
         service.delegate = self
         
         configure()
-        service.performRequest(urlString: service.fetchUpComingMoviesURL())
+        
+        let url = NetworkConstants.Urls.fetchUpComingMoviesURL()
+        service.performRequest(urlString: url)
     }
     
     func configure(){
@@ -37,14 +47,6 @@ class SplashScreenViewController: UIViewController {
         view.backgroundColor = .white
         
         configureConstraints()
-        animationViewDesign()
-    }
-    
-    func animationViewDesign(){
-        animationView.animation = Animation.named(Constants.animationName)
-        animationView.loopMode = .loop
-        animationView.contentMode = .scaleToFill
-        animationView.play(completion: .none)
     }
     
 //MARK: - Tab bar
