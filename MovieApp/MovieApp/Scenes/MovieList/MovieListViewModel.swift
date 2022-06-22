@@ -7,8 +7,8 @@
 
 import Foundation
 
-var movies = [Movie]()
-
 struct MovieListViewModel {
+    
+    var movies = [Movie]()
     
 }

@@ -29,16 +29,11 @@ class SplashScreenViewController: UIViewController {
     }()
     
     let tabBarVC = UITabBarController()
-    var service = WebService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        service.delegate = self
         
         configure()
-        
-        let url = NetworkConstants.Urls.fetchUpComingMoviesURL()
-        service.performRequest(urlString: url)
     }
     
     func configure(){
@@ -47,6 +42,14 @@ class SplashScreenViewController: UIViewController {
         view.backgroundColor = .white
         
         configureConstraints()
+        completeDownload()
+    }
+    
+    func completeDownload() {
+        let delayInSeconds = 3.0
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
+            self.tabBarConfigure()
+        }
     }
     
 //MARK: - Tab bar

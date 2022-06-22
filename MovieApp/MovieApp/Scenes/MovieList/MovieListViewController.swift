@@ -39,15 +39,19 @@ class MovieListViewController: UIViewController {
         return tableView
     }()
     
-    let tableCellViewModel = TableCellViewModel()
-    let service = WebService()
+    var movieListViewModel = MovieListViewModel()
+    var service = WebService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        service.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         
         configure()
+        
+        let url = NetworkConstants.Urls.fetchUpComingMoviesURL()
+        service.performRequest(urlString: url)
     }
         
     private func configure(){
@@ -74,4 +78,9 @@ class MovieListViewController: UIViewController {
     }
 }
 
+extension MovieListViewController: WebProtocol {
+    func getData(movies: [Movie]) {
+        movieListViewModel.movies = movies
+    }
+}
 

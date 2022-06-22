@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol WebDelegate {
-    func completeDownload()
+protocol WebProtocol {
+    func getData(movies: [Movie])
 }
 
 struct WebService {
     
-    var delegate: WebDelegate?
+    var delegate: WebProtocol?
     
     func performRequest(urlString: String) {
         guard let url = URL(string: urlString) else {return}
@@ -25,12 +25,11 @@ struct WebService {
             }
             if let safeData = data {
                 if let moviesData = parseJSON(safeData){
-                    movies = moviesData
+                    delegate?.getData(movies: moviesData)
                 }
             }
         }
         task.resume()
-        delegate?.completeDownload()
     }
     
     func parseJSON(_ movieData : Data)->[Movie]? {
