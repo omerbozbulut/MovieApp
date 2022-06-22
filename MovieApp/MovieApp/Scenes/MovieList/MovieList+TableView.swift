@@ -15,8 +15,16 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.tableViewIdentifier, for: indexPath) as? MovieTableViewCell else {return UITableViewCell()}
+        let movie = tableCellViewModel.getMovie(row: indexPath.row)
+        cell.configureMovie(movie: movie)
+        return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let destinationVC = UIViewController()
+        //destinationVC.row = indexPath.row
+        present(destinationVC, animated: true, completion: nil)
+    }
     
 }

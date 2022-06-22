@@ -24,10 +24,9 @@ struct WebService {
                 return
             }
             if let safeData = data {
-                if let movies = parseJSON(safeData){
-                    print(movies)
+                if let moviesData = parseJSON(safeData){
+                     movies = moviesData
                 }
-                
             }
         }
         task.resume()
