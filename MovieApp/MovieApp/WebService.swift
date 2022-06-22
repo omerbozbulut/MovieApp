@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol KingfisherDelegate {
+protocol WebDelegate {
     func completeDownload()
 }
 
 struct WebService {
     
-    var delegate: KingfisherDelegate?
+    var delegate: WebDelegate?
     
     func performRequest(urlString: String) {
         guard let url = URL(string: urlString) else {return}
@@ -25,27 +25,12 @@ struct WebService {
             }
             if let safeData = data {
                 if let moviesData = parseJSON(safeData){
-                     movies = moviesData
+                    movies = moviesData
                 }
             }
         }
         task.resume()
         delegate?.completeDownload()
-    }
-    
-    func fetchTopRatedMoviesURL()->String{
-        let url = "\(NetworkConstants.BASE_URL)/3/movie/top_rated?api_key=\(NetworkConstants.KEY)&language=en-US&page=1"
-        return url
-    }
-    
-    func fetchUpComingMoviesURL()->String{
-        let url = "\(NetworkConstants.BASE_URL)/3/movie/upcoming?api_key=\(NetworkConstants.KEY)&language=en-US&page=1"
-        return url
-    }
-    
-    func fetchPopularMoviesURL()->String{
-        let url = "\(NetworkConstants.BASE_URL)/3/movie/popular?api_key=\(NetworkConstants.KEY)&language=en-US&page=1"
-        return url
     }
     
     func parseJSON(_ movieData : Data)->[Movie]? {

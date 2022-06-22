@@ -19,6 +19,7 @@ class MovieListViewController: UIViewController {
         search.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [.foregroundColor: UIColor.white])
         search.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: search.frame.height))
         search.leftViewMode = UITextField.ViewMode.always
+        search.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return search
     }()
     
@@ -39,6 +40,7 @@ class MovieListViewController: UIViewController {
     }()
     
     let tableCellViewModel = TableCellViewModel()
+    let service = WebService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,5 +58,20 @@ class MovieListViewController: UIViewController {
        
         configureConstraints()
     }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        guard let text = textField.text else {return}
+        
+        if !text.isEmpty {
+            let url = NetworkConstants.Urls.fetchSearchMovieURL(name: text)
+            service.performRequest(urlString: url)
+        }
+        else {
+            let url = NetworkConstants.Urls.fetchUpComingMoviesURL()
+            service.performRequest(urlString: url)
+        }
+        tableView.reloadData()
+    }
 }
+
 

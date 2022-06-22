@@ -8,7 +8,7 @@
 import UIKit
 
 //MARK: - Kingfisher Extension
-extension SplashScreenViewController: KingfisherDelegate {
+extension SplashScreenViewController: WebDelegate {
     func completeDownload() {
         let delayInSeconds = 2.5
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {

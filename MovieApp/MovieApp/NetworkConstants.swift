@@ -10,4 +10,27 @@ import Foundation
 struct NetworkConstants {
     static let BASE_URL = "https://api.themoviedb.org"
     static let KEY = "f7e4d60f9116a60ca46ab131ae2d83ad"
+    
+    struct Urls {
+        static func fetchTopRatedMoviesURL()->String{
+            let url = "\(NetworkConstants.BASE_URL)/3/movie/top_rated?api_key=\(NetworkConstants.KEY)&language=en-US&page=1"
+            return url
+        }
+        
+        static func fetchUpComingMoviesURL()->String{
+            let url = "\(NetworkConstants.BASE_URL)/3/movie/upcoming?api_key=\(NetworkConstants.KEY)&language=en-US&page=1"
+            return url
+        }
+        
+        static func fetchPopularMoviesURL()->String{
+            let url = "\(NetworkConstants.BASE_URL)/3/movie/popular?api_key=\(NetworkConstants.KEY)&language=en-US&page=1"
+            return url
+        }
+        
+        static func fetchSearchMovieURL(name: String)->String{
+            let url = "\(NetworkConstants.BASE_URL)/3/search/movie?api_key=\(NetworkConstants.KEY)&language=en-US&query=\(name)&page=1&include_adult=false"
+            return url
+        }
+    }
+    
 }
