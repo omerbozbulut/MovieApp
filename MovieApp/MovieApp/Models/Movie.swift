@@ -7,6 +7,8 @@
 
 import Foundation
 
+var movies = [Movie]()
+
 struct Movies: Codable {
     let results: [Movie]
 }

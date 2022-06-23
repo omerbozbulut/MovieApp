@@ -29,6 +29,11 @@
 		17303BCA285F486B0074A7C3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 17303BC9285F486B0074A7C3 /* SnapKit */; };
 		17303BD22861EA890074A7C3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17303BD12861EA890074A7C3 /* Constants.swift */; };
 		17303BD42861EE6B0074A7C3 /* SplashScreen+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17303BD32861EE6B0074A7C3 /* SplashScreen+Constraints.swift */; };
+		1776135F2863A918006CCA08 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1776135E2863A918006CCA08 /* MovieDetailViewController.swift */; };
+		177613622863A975006CCA08 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177613612863A975006CCA08 /* BookmarksViewController.swift */; };
+		177613642863B211006CCA08 /* Bookmarks+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177613632863B211006CCA08 /* Bookmarks+TableView.swift */; };
+		17C4EBB12864816F00D14E0E /* BookmarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C4EBB02864816F00D14E0E /* BookmarksViewModel.swift */; };
+		17C4EBB3286481E200D14E0E /* Bookmarks+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C4EBB2286481E200D14E0E /* Bookmarks+Constraints.swift */; };
 		DA6AA6E1D0C433D44312EFB6 /* Pods_MovieApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF459FC9A868AAEB2C79302 /* Pods_MovieApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +62,11 @@
 		17303BBF285F47A40074A7C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17303BD12861EA890074A7C3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		17303BD32861EE6B0074A7C3 /* SplashScreen+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SplashScreen+Constraints.swift"; sourceTree = "<group>"; };
+		1776135E2863A918006CCA08 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		177613612863A975006CCA08 /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
+		177613632863B211006CCA08 /* Bookmarks+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bookmarks+TableView.swift"; sourceTree = "<group>"; };
+		17C4EBB02864816F00D14E0E /* BookmarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewModel.swift; sourceTree = "<group>"; };
+		17C4EBB2286481E200D14E0E /* Bookmarks+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bookmarks+Constraints.swift"; sourceTree = "<group>"; };
 		BC1F93D868F9D68234E1E13D /* Pods-MovieApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp.release.xcconfig"; path = "Target Support Files/Pods-MovieApp/Pods-MovieApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,6 +184,8 @@
 		17303BCE285F4A540074A7C3 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				177613602863A95E006CCA08 /* Bookmarks */,
+				1776135D2863A8F4006CCA08 /* MovieDetail */,
 				172A7D5728623B4D003D8B40 /* MovieViewCell */,
 				172A7D4728620B8E003D8B40 /* MovieList */,
 				17303BCF285F4A710074A7C3 /* SplashScreen */,
@@ -198,6 +210,25 @@
 				172A7D5E28624F01003D8B40 /* NetworkConstants.swift */,
 			);
 			name = Constants;
+			sourceTree = "<group>";
+		};
+		1776135D2863A8F4006CCA08 /* MovieDetail */ = {
+			isa = PBXGroup;
+			children = (
+				1776135E2863A918006CCA08 /* MovieDetailViewController.swift */,
+			);
+			path = MovieDetail;
+			sourceTree = "<group>";
+		};
+		177613602863A95E006CCA08 /* Bookmarks */ = {
+			isa = PBXGroup;
+			children = (
+				177613612863A975006CCA08 /* BookmarksViewController.swift */,
+				177613632863B211006CCA08 /* Bookmarks+TableView.swift */,
+				17C4EBB2286481E200D14E0E /* Bookmarks+Constraints.swift */,
+				17C4EBB02864816F00D14E0E /* BookmarksViewModel.swift */,
+			);
+			path = Bookmarks;
 			sourceTree = "<group>";
 		};
 		C71700C514F47BCD7D4D9F65 /* Frameworks */ = {
@@ -341,19 +372,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				177613642863B211006CCA08 /* Bookmarks+TableView.swift in Sources */,
+				177613622863A975006CCA08 /* BookmarksViewController.swift in Sources */,
 				172A7D4B28620BDB003D8B40 /* Movie.swift in Sources */,
 				17303BD42861EE6B0074A7C3 /* SplashScreen+Constraints.swift in Sources */,
 				17303BB6285F47A10074A7C3 /* SplashScreenViewController.swift in Sources */,
 				172A7D502862118A003D8B40 /* MovieList+TableView.swift in Sources */,
 				17303BB2285F47A10074A7C3 /* AppDelegate.swift in Sources */,
 				172A7D5B28624A24003D8B40 /* TableCellViewModel.swift in Sources */,
+				1776135F2863A918006CCA08 /* MovieDetailViewController.swift in Sources */,
 				172A7D52286217D4003D8B40 /* WebService.swift in Sources */,
 				172A7D5628623AD7003D8B40 /* SplashScreen+Extensions.swift in Sources */,
 				172A7D5F28624F01003D8B40 /* NetworkConstants.swift in Sources */,
+				17C4EBB3286481E200D14E0E /* Bookmarks+Constraints.swift in Sources */,
 				172A7D4928620BB9003D8B40 /* MovieListViewController.swift in Sources */,
 				172A7D54286227C6003D8B40 /* MovieListViewModel.swift in Sources */,
 				172A7D4E28621119003D8B40 /* MovieList+Constraints.swift in Sources */,
 				17303BB4285F47A10074A7C3 /* SceneDelegate.swift in Sources */,
+				17C4EBB12864816F00D14E0E /* BookmarksViewModel.swift in Sources */,
 				172A7D5D28624A35003D8B40 /* TableCell+Constraints.swift in Sources */,
 				17303BD22861EA890074A7C3 /* Constants.swift in Sources */,
 				172A7D5928623B78003D8B40 /* MovieTableViewCell.swift in Sources */,

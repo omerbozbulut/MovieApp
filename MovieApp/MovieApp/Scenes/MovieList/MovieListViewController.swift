@@ -8,7 +8,7 @@
 import UIKit
 
 class MovieListViewController: UIViewController {
-   
+  
     let searchTextField: UITextField = {
         let search = UITextField()
         search.textColor = .white
@@ -34,53 +34,50 @@ class MovieListViewController: UIViewController {
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.rowHeight = 144
-        tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: Constants.tableViewIdentifier)
+        tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: Constants.movieListTableViewIdentifier)
         tableView.separatorColor = .black
         return tableView
     }()
     
-    var movieListViewModel = MovieListViewModel()
+    let movieListViewModel = MovieListViewModel()
     var service = WebService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        service.delegate = self
+        
         tableView.delegate = self
         tableView.dataSource = self
-        
         configure()
-        
-        let url = NetworkConstants.Urls.fetchUpComingMoviesURL()
-        service.performRequest(urlString: url)
     }
-        
+    
     private func configure(){
         view.addSubview(searchTextField)
         view.addSubview(filterButton)
         view.addSubview(tableView)
-        view.backgroundColor = UIColor(hex: "070D23")
-       
+        view.backgroundColor = .black
+        
         configureConstraints()
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         guard let text = textField.text else {return}
         
+        let url:String
+        
         if !text.isEmpty {
-            let url = NetworkConstants.Urls.fetchSearchMovieURL(name: text)
-            service.performRequest(urlString: url)
+            url = NetworkConstants.Urls.fetchSearchMovieURL(name: text)
         }
         else {
-            let url = NetworkConstants.Urls.fetchUpComingMoviesURL()
-            service.performRequest(urlString: url)
+            url = NetworkConstants.Urls.fetchUpComingMoviesURL()
         }
-        tableView.reloadData()
-    }
-}
-
-extension MovieListViewController: WebProtocol {
-    func getData(movies: [Movie]) {
-        movieListViewModel.movies = movies
+        
+        service.performRequest(urlString: url, completionHandler: { (success) -> Void in
+            if success{
+                tableView.reloadData()
+            }else{
+                print("Download Error")
+            }
+        })
     }
 }
 

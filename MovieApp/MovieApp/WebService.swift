@@ -7,15 +7,12 @@
 
 import Foundation
 
-protocol WebProtocol {
-    func getData(movies: [Movie])
-}
-
-struct WebService {
+class WebService {
     
-    var delegate: WebProtocol?
+    typealias CompletionHandler = (_ success:Bool) -> Void
+    var flag = false
     
-    func performRequest(urlString: String) {
+    func performRequest(urlString: String, completionHandler: CompletionHandler) {
         guard let url = URL(string: urlString) else {return}
         
         let urlSession = URLSession(configuration: .default)
@@ -24,12 +21,14 @@ struct WebService {
                 return
             }
             if let safeData = data {
-                if let moviesData = parseJSON(safeData){
-                    delegate?.getData(movies: moviesData)
+                if let moviesData = self.parseJSON(safeData){
+                    self.flag = true
+                    movies = moviesData
                 }
             }
         }
         task.resume()
+        completionHandler(flag)
     }
     
     func parseJSON(_ movieData : Data)->[Movie]? {

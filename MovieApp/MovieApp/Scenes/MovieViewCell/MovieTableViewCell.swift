@@ -56,6 +56,10 @@ class MovieTableViewCell: UITableViewCell {
         return vote
     }()
     
+    private let viewModel = TableCellViewModel()
+    var row = 0
+    var isItRegistered = false
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -76,7 +80,6 @@ class MovieTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         backgroundColor = .black
-        
         makeConstraints()
     }
     
@@ -85,7 +88,16 @@ class MovieTableViewCell: UITableViewCell {
         vote.text = "\(movie.vote_average)/10"
     }
     
+    func configureBookmarks(movie: Movie){
+        title.text = movie.title
+        vote.text = "\(movie.vote_average)/10"
+    }
+    
     @objc func addBookmark(){
-        print("bookmark eklendi")
+        if !isItRegistered{
+            isItRegistered = true
+            viewModel.addBookmark(row)
+            bookmark.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+        }
     }
 }

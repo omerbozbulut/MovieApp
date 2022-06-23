@@ -29,20 +29,28 @@ class SplashScreenViewController: UIViewController {
     }()
     
     let tabBarVC = UITabBarController()
+    var service = WebService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configure()
     }
     
     func configure(){
+        let url = NetworkConstants.Urls.fetchUpComingMoviesURL()
+        service.performRequest(urlString: url, completionHandler: { (success) -> Void in
+            if !success{
+                completeDownload()
+            }else{
+                print("Download Error")
+            }
+        })
+        
         view.addSubview(titleLabel)
         view.addSubview(animationView)
         view.backgroundColor = .white
         
         configureConstraints()
-        completeDownload()
     }
     
     func completeDownload() {
@@ -54,8 +62,9 @@ class SplashScreenViewController: UIViewController {
     
 //MARK: - Tab bar
     func tabBarConfigure(){
+        
         let movieListVC = MovieListViewController()
-        let bookmarksVC = UIViewController()
+        let bookmarksVC = BookmarksViewController()
         
         movieListVC.title = Constants.tabBarTitles.movieListScene
         bookmarksVC.title = Constants.tabBarTitles.bookmarksScene
@@ -71,6 +80,8 @@ class SplashScreenViewController: UIViewController {
         for img in 0..<Constants.tabBarImages.count{
             items[img].image = UIImage(systemName: Constants.tabBarImages[img])
         }
-        present(tabBarVC,animated: false)
+        
+        tabBarVC.navigationItem.hidesBackButton = true
+        navigationController?.pushViewController(tabBarVC, animated: true)
     }
 }

@@ -7,8 +7,11 @@
 
 import Foundation
 
-struct MovieListViewModel {
+class MovieListViewModel {
     
-    var movies = [Movie]()
+    var movieList = movies
     
+    func getMovies()->[Movie]{
+        return movieList
+    }
 }

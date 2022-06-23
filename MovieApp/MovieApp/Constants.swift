@@ -11,7 +11,8 @@ struct Constants {
     
     static let animationName = "movie"
     static let tabBarImages = ["film","bookmark"]
-    static let tableViewIdentifier = "tableCell"
+    static let movieListTableViewIdentifier = "movieListCell"
+    static let bookmarksTableViewIdentifier = "bookmarksCell"
     
     struct tabBarTitles {
         static let movieListScene = "Movies"
