@@ -31,6 +31,11 @@ struct NetworkConstants {
             let url = "\(NetworkConstants.BASE_URL)/3/search/movie?api_key=\(NetworkConstants.KEY)&language=en-US&query=\(name)&page=1&include_adult=false"
             return url
         }
+        
+        static func fetchMovieImageURL(path: String)->String{
+            let url = "https://image.tmdb.org/t/p/w500\(path)"
+            return url
+        }
     }
     
 }

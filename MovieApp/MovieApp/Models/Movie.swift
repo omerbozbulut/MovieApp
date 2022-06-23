@@ -14,6 +14,7 @@ struct Movies: Codable {
 }
 
 struct Movie: Codable {
+    let id: Int
     let title: String
     let overview: String
     let vote_average: Float

@@ -28,7 +28,6 @@ class SplashScreenViewController: UIViewController {
         return animation
     }()
     
-    let tabBarVC = UITabBarController()
     var service = WebService()
     
     override func viewDidLoad() {
@@ -62,26 +61,25 @@ class SplashScreenViewController: UIViewController {
     
 //MARK: - Tab bar
     func tabBarConfigure(){
+        let tabBarVC = UITabBarController()
         
-        let movieListVC = MovieListViewController()
-        let bookmarksVC = BookmarksViewController()
-        
+        let movieListVC = UINavigationController(rootViewController: MovieListViewController())
+        let bookmarksVC = UINavigationController(rootViewController:  BookmarksViewController())
+    
         movieListVC.title = Constants.tabBarTitles.movieListScene
         bookmarksVC.title = Constants.tabBarTitles.bookmarksScene
         
-        tabBarVC.modalPresentationStyle = .fullScreen
-        tabBarVC.tabBar.tintColor = .white
-        tabBarVC.tabBar.backgroundColor = .black
-        tabBarVC.tabBar.barTintColor = .white
         tabBarVC.setViewControllers([movieListVC,bookmarksVC], animated: false)
-
+        
         guard let items = tabBarVC.tabBar.items else {return}
         
         for img in 0..<Constants.tabBarImages.count{
             items[img].image = UIImage(systemName: Constants.tabBarImages[img])
         }
         
-        tabBarVC.navigationItem.hidesBackButton = true
-        navigationController?.pushViewController(tabBarVC, animated: true)
+        tabBarVC.modalPresentationStyle = .fullScreen
+        tabBarVC.tabBar.tintColor = .white
+        tabBarVC.tabBar.barTintColor = .white
+        present(tabBarVC, animated: false)
     }
 }

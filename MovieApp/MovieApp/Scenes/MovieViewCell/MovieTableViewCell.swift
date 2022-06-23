@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MovieTableViewCell: UITableViewCell {
 
@@ -13,13 +14,14 @@ class MovieTableViewCell: UITableViewCell {
         let view = UIView()
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 10
-        view.backgroundColor = .systemIndigo
+        view.backgroundColor = .darkGray
         return view
     }()
     
     let image: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(systemName: "doc.fill")
+        image.layer.masksToBounds = true
+        image.layer.cornerRadius = 4
         return image
     }()
     
@@ -84,11 +86,13 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     func configureMovie(movie: Movie){
+        image.kf.setImage(with: URL(string: NetworkConstants.Urls.fetchMovieImageURL(path:  movie.poster_path)))
         title.text = movie.title
         vote.text = "\(movie.vote_average)/10"
     }
     
     func configureBookmarks(movie: Movie){
+        image.kf.setImage(with: URL(string: NetworkConstants.Urls.fetchMovieImageURL(path: movie.poster_path)))
         title.text = movie.title
         vote.text = "\(movie.vote_average)/10"
     }

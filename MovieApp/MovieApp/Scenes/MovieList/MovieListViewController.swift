@@ -8,20 +8,8 @@
 import UIKit
 
 class MovieListViewController: UIViewController {
-  
-    let searchTextField: UITextField = {
-        let search = UITextField()
-        search.textColor = .white
-        search.backgroundColor = .darkGray
-        search.tintColor = .white
-        search.layer.masksToBounds = true
-        search.layer.cornerRadius = 5
-        search.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [.foregroundColor: UIColor.white])
-        search.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: search.frame.height))
-        search.leftViewMode = UITextField.ViewMode.always
-        search.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        return search
-    }()
+    
+   
     
     let filterButton: UIButton = {
         let button = UIButton()
@@ -39,45 +27,58 @@ class MovieListViewController: UIViewController {
         return tableView
     }()
     
+    let searchContoller = UISearchController()
+    
     let movieListViewModel = MovieListViewModel()
     var service = WebService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Search"
+        searchContoller.searchResultsUpdater = self
+        navigationItem.searchController = searchContoller
         tableView.delegate = self
         tableView.dataSource = self
         configure()
+        
     }
     
     private func configure(){
-        view.addSubview(searchTextField)
         view.addSubview(filterButton)
         view.addSubview(tableView)
         view.backgroundColor = .black
         
         configureConstraints()
     }
-    
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        guard let text = textField.text else {return}
-        
-        let url:String
-        
-        if !text.isEmpty {
-            url = NetworkConstants.Urls.fetchSearchMovieURL(name: text)
-        }
-        else {
-            url = NetworkConstants.Urls.fetchUpComingMoviesURL()
-        }
-        
-        service.performRequest(urlString: url, completionHandler: { (success) -> Void in
-            if success{
-                tableView.reloadData()
-            }else{
-                print("Download Error")
-            }
-        })
-    }
 }
 
+extension MovieListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        searchController.searchBar.searchTextField.textColor = .white
+        guard let text = searchController.searchBar.text else {return}
+        
+        if !text.isEmpty {
+            let url = NetworkConstants.Urls.fetchSearchMovieURL(name: text)
+            service.performRequest(urlString: url, completionHandler: { (success) -> Void in
+                if success{
+                    tableView.reloadData()
+                }else{
+                    print("Download Error")
+                }
+            })
+        }
+        else {
+            let url = NetworkConstants.Urls.fetchUpComingMoviesURL()
+            service.performRequest(urlString: url, completionHandler: { (success) -> Void in
+                if success{
+                    tableView.reloadData()
+                }else{
+                    print("Download Error")
+                }
+            })
+        }
+    }
+    
+    
+}

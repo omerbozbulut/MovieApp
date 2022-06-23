@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 class TableCellViewModel {
 
     private var bookmarks = [Movie]()

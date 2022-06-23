@@ -11,23 +11,13 @@ import SnapKit
 extension MovieListViewController {
     
     func configureConstraints(){
-        makeTextFieldConstraints()
         makeFilterButtonConstraints()
         makeTableViewConstraints()
     }
     
-    func makeTextFieldConstraints(){
-        searchTextField.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.leading.equalToSuperview().offset(24)
-            make.trailing.equalToSuperview().offset(-24)
-            make.height.equalTo(40)
-        }
-    }
-    
     func makeFilterButtonConstraints(){
         filterButton.snp.makeConstraints { make in
-            make.top.equalTo(searchTextField.snp.bottom).offset(16)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.equalToSuperview().offset(24)
             make.trailing.equalToSuperview().offset(-24)
             make.height.equalTo(32)
