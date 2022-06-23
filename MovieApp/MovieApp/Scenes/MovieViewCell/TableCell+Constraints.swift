@@ -41,7 +41,7 @@ extension MovieTableViewCell{
     }
     
     private func makeTitleConstraints(){
-        title.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.leading.equalTo(image.snp.trailing).offset(8)
             make.top.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-8)

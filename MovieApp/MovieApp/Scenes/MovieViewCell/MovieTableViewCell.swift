@@ -32,7 +32,7 @@ class MovieTableViewCell: UITableViewCell {
         return image
     }()
     
-    let title: UILabel = {
+    let titleLabel: UILabel = {
         let title = UILabel()
         title.textColor = .white
         title.lineBreakMode = .byWordWrapping
@@ -74,7 +74,7 @@ class MovieTableViewCell: UITableViewCell {
     
     private func configure(){
         customView.addSubview(image)
-        customView.addSubview(title)
+        customView.addSubview(titleLabel)
         customView.addSubview(bookmark)
         customView.addSubview(vote)
         customView.addSubview(starImage)
@@ -87,13 +87,13 @@ class MovieTableViewCell: UITableViewCell {
     
     func configureMovie(movie: Movie){
         image.kf.setImage(with: URL(string: NetworkConstants.Urls.fetchMovieImageURL(path:  movie.poster_path)))
-        title.text = movie.title
+        titleLabel.text = movie.title
         vote.text = "\(movie.vote_average)/10"
     }
     
     func configureBookmarks(movie: Movie){
         image.kf.setImage(with: URL(string: NetworkConstants.Urls.fetchMovieImageURL(path: movie.poster_path)))
-        title.text = movie.title
+        titleLabel.text = movie.title
         vote.text = "\(movie.vote_average)/10"
     }
     

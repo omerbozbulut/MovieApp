@@ -9,8 +9,6 @@ import UIKit
 
 class MovieListViewController: UIViewController {
     
-   
-    
     let filterButton: UIButton = {
         let button = UIButton()
         button.contentHorizontalAlignment = .left
@@ -35,13 +33,13 @@ class MovieListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Search"
+
         searchContoller.searchResultsUpdater = self
         navigationItem.searchController = searchContoller
+        
         tableView.delegate = self
         tableView.dataSource = self
         configure()
-        
     }
     
     private func configure(){
@@ -57,28 +55,15 @@ extension MovieListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         searchController.searchBar.searchTextField.textColor = .white
         guard let text = searchController.searchBar.text else {return}
-        
+        print(text)
         if !text.isEmpty {
             let url = NetworkConstants.Urls.fetchSearchMovieURL(name: text)
-            service.performRequest(urlString: url, completionHandler: { (success) -> Void in
-                if success{
-                    tableView.reloadData()
-                }else{
-                    print("Download Error")
-                }
-            })
+            service.performRequest(urlString: url)
         }
         else {
             let url = NetworkConstants.Urls.fetchUpComingMoviesURL()
-            service.performRequest(urlString: url, completionHandler: { (success) -> Void in
-                if success{
-                    tableView.reloadData()
-                }else{
-                    print("Download Error")
-                }
-            })
+            service.performRequest(urlString: url)
         }
+        tableView.reloadData()
     }
-    
-    
 }

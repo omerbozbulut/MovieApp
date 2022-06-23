@@ -41,18 +41,16 @@ class SplashScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        service.delegate = self
         configure()
     }
 
     func configure(){
         let url = NetworkConstants.Urls.fetchUpComingMoviesURL()
-        service.performRequest(urlString: url, completionHandler: { (success) -> Void in
-            if !success{
-                completeDownload()
-            }else{
-                print("Download Error")
-            }
-        })
+        service.performRequest(urlString: url)
+        completeDownload()
+           
         
         customView.addSubview(animationView)
         view.addSubview(titleLabel)
