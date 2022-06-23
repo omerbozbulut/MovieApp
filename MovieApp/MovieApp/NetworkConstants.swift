@@ -10,6 +10,7 @@ import Foundation
 struct NetworkConstants {
     static let BASE_URL = "https://api.themoviedb.org"
     static let KEY = "f7e4d60f9116a60ca46ab131ae2d83ad"
+    static let IMAGE_URL = "https://image.tmdb.org"
     
     struct Urls {
         static func fetchTopRatedMoviesURL()->String{
@@ -33,7 +34,7 @@ struct NetworkConstants {
         }
         
         static func fetchMovieImageURL(path: String)->String{
-            let url = "https://image.tmdb.org/t/p/w500\(path)"
+            let url = "\(NetworkConstants.IMAGE_URL)/t/p/w500\(path)"
             return url
         }
     }

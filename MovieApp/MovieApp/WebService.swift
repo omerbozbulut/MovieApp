@@ -42,21 +42,3 @@ class WebService {
         }
     }
 }
-
-
-
-/*
- Detail e koy
- 
- func configureNavigation(){
-     let backbutton = UIButton(type: .custom)
-     backbutton.setImage(UIImage(systemName: "arrow.backward.square"), for: .normal)
-     backbutton.setTitle("Back", for: .normal)
-     backbutton.setTitleColor(.black, for: .normal)
-         backbutton.addTarget(self, action: "backAction", forControlEvents: .TouchUpInside)
-     
- }
- 
- @objc func
- 
- */

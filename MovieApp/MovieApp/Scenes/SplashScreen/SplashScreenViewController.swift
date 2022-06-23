@@ -14,16 +14,25 @@ class SplashScreenViewController: UIViewController {
     let titleLabel: CLTypingLabel = {
         let title = CLTypingLabel()
         title.text = Constants.Titles.splashScreenLabel
-        title.font = UIFont(name: Constants.Fonts.TrebuchetMSBold, size: 55)
+        title.font = UIFont(name: Constants.Fonts.helveticaBOLD, size: 55)
         title.textColor = .systemIndigo
         return title
     }()
+    
+    let customView: UIView = {
+        let view = UIView()
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 100
+        view.backgroundColor = .white
+        return view
+    }()
+    
     
     let animationView: AnimationView = {
         let animation = AnimationView()
         animation.animation = Animation.named(Constants.animationName)
         animation.loopMode = .loop
-        animation.contentMode = .scaleToFill
+        animation.contentMode = .scaleAspectFill
         animation.play(completion: .none)
         return animation
     }()
@@ -34,7 +43,7 @@ class SplashScreenViewController: UIViewController {
         super.viewDidLoad()
         configure()
     }
-    
+
     func configure(){
         let url = NetworkConstants.Urls.fetchUpComingMoviesURL()
         service.performRequest(urlString: url, completionHandler: { (success) -> Void in
@@ -45,17 +54,18 @@ class SplashScreenViewController: UIViewController {
             }
         })
         
+        customView.addSubview(animationView)
         view.addSubview(titleLabel)
-        view.addSubview(animationView)
-        view.backgroundColor = .white
+        view.addSubview(customView)
         
+        view.backgroundColor = .black
         configureConstraints()
     }
     
     func completeDownload() {
         let delayInSeconds = 3.0
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
-            self.tabBarConfigure()
+           self.tabBarConfigure()
         }
     }
     
