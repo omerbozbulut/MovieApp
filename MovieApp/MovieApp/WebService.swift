@@ -25,13 +25,11 @@ class WebService {
             }
             if let safeData = data {
                 if let moviesData = self.parseJSON(safeData){
-                    print("perform ici")
                     self.delegate?.getData(moviesData)
                 }
             }
         }
         task.resume()
-        print("perform altı")
     }
     
     func parseJSON(_ movieData : Data)->[Movie]? {

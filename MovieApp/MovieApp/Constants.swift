@@ -23,6 +23,7 @@ struct Constants {
         static let TrebuchetMSBold = "TrebuchetMS-Bold"
         static let helvetica = "Helvetica"
         static let helveticaBOLD = "Helvetica-Bold"
+        static let helveticaMedium = "HelveticaNeue-Medium"
     }
     
     struct Titles {

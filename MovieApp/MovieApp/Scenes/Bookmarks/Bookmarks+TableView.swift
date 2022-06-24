@@ -21,6 +21,7 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
         if let bookmarkMovies = viewModel.getMovies(){
             cell.configureBookmarks(movie: bookmarkMovies[indexPath.row])
             cell.row = indexPath.row
+            cell.bookmark.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
         }
         
         return cell
