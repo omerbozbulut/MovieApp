@@ -14,7 +14,7 @@ extension BookmarksViewController {
         makeTableViewConstraints()
     }
     
-    func makeTableViewConstraints(){
+    private func makeTableViewConstraints(){
         tableView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.trailing.leading.equalToSuperview()

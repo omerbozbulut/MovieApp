@@ -8,10 +8,11 @@
 import Foundation
 
 class MovieListViewModel{
-
-    var movieList = movies
+    
+    private var movieList = movies
     
     func getMovies()->[Movie]{
+        movieList = movies
         return movieList
     }
 }

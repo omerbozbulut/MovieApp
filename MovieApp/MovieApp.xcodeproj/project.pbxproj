@@ -30,6 +30,7 @@
 		17303BD22861EA890074A7C3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17303BD12861EA890074A7C3 /* Constants.swift */; };
 		17303BD42861EE6B0074A7C3 /* SplashScreen+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17303BD32861EE6B0074A7C3 /* SplashScreen+Constraints.swift */; };
 		1745A4CF28662D0800D4CABF /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1745A4CE28662D0800D4CABF /* MovieDetailViewModel.swift */; };
+		1755BE58286731A100BF5E4E /* MovieList+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1755BE57286731A100BF5E4E /* MovieList+Extensions.swift */; };
 		1776135F2863A918006CCA08 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1776135E2863A918006CCA08 /* MovieDetailViewController.swift */; };
 		177613622863A975006CCA08 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177613612863A975006CCA08 /* BookmarksViewController.swift */; };
 		177613642863B211006CCA08 /* Bookmarks+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177613632863B211006CCA08 /* Bookmarks+TableView.swift */; };
@@ -65,6 +66,7 @@
 		17303BD12861EA890074A7C3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		17303BD32861EE6B0074A7C3 /* SplashScreen+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SplashScreen+Constraints.swift"; sourceTree = "<group>"; };
 		1745A4CE28662D0800D4CABF /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
+		1755BE57286731A100BF5E4E /* MovieList+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieList+Extensions.swift"; sourceTree = "<group>"; };
 		1776135E2863A918006CCA08 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		177613612863A975006CCA08 /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
 		177613632863B211006CCA08 /* Bookmarks+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bookmarks+TableView.swift"; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				172A7D4D28621119003D8B40 /* MovieList+Constraints.swift */,
 				172A7D4F2862118A003D8B40 /* MovieList+TableView.swift */,
 				172A7D53286227C6003D8B40 /* MovieListViewModel.swift */,
+				1755BE57286731A100BF5E4E /* MovieList+Extensions.swift */,
 			);
 			path = MovieList;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				1776135F2863A918006CCA08 /* MovieDetailViewController.swift in Sources */,
 				172A7D52286217D4003D8B40 /* WebService.swift in Sources */,
 				172A7D5628623AD7003D8B40 /* SplashScreen+Extensions.swift in Sources */,
+				1755BE58286731A100BF5E4E /* MovieList+Extensions.swift in Sources */,
 				172A7D5F28624F01003D8B40 /* NetworkConstants.swift in Sources */,
 				17C4EBB3286481E200D14E0E /* Bookmarks+Constraints.swift in Sources */,
 				172A7D4928620BB9003D8B40 /* MovieListViewController.swift in Sources */,

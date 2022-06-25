@@ -55,8 +55,8 @@ class MovieDetailViewController: UIViewController {
         return date
     }()
     
-    let viewModel = MovieDetailViewModel()
-    var row = 0
+    private let viewModel = MovieDetailViewModel()
+    private var row = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()

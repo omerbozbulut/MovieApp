@@ -26,6 +26,7 @@ class BookmarksViewController: UIViewController {
         tableView.dataSource = self
         
         view.addSubview(tableView)
+        view.backgroundColor = .black
         configureConstraints()
     }
     

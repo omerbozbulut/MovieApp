@@ -9,7 +9,7 @@ import Foundation
 
 class MovieDetailViewModel{
     
-    var movieList = movies
+    private var movieList = movies
     
     func getMovies()->[Movie]{
         return movieList

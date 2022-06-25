@@ -15,7 +15,7 @@ extension MovieListViewController {
         makeTableViewConstraints()
     }
     
-    func makeFilterButtonConstraints(){
+    private func makeFilterButtonConstraints(){
         filterButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.equalToSuperview().offset(24)
@@ -24,7 +24,7 @@ extension MovieListViewController {
         }
     }
     
-    func makeTableViewConstraints(){
+    private func makeTableViewConstraints(){
         tableView.snp.makeConstraints { make in
             make.top.equalTo(filterButton.snp.bottom).offset(16)
             make.trailing.leading.equalToSuperview()

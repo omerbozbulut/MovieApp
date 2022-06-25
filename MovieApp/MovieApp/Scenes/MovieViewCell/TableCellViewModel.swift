@@ -30,9 +30,4 @@ class TableCellViewModel {
         bookmarks.append(movieList[row])
         updateUserDefaults()
     }
-    
-    func getBookmarks(_ row: Int)->Movie{
-        bookmarks = setBookmarks()
-        return bookmarks[row]
-    }
 }

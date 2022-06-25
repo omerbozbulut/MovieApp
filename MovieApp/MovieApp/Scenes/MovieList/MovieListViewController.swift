@@ -32,13 +32,13 @@ class MovieListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 
         searchContoller.searchResultsUpdater = self
         navigationItem.searchController = searchContoller
         
         tableView.delegate = self
         tableView.dataSource = self
+        service.delegate = self
         configure()
     }
     
@@ -51,11 +51,11 @@ class MovieListViewController: UIViewController {
     }
 }
 
+//MARK: - Search Movie
 extension MovieListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         searchController.searchBar.searchTextField.textColor = .white
         guard let text = searchController.searchBar.text else {return}
-        print(text)
         if !text.isEmpty {
             let url = NetworkConstants.Urls.fetchSearchMovieURL(name: text)
             service.performRequest(urlString: url)
@@ -64,6 +64,5 @@ extension MovieListViewController: UISearchResultsUpdating {
             let url = NetworkConstants.Urls.fetchUpComingMoviesURL()
             service.performRequest(urlString: url)
         }
-        tableView.reloadData()
     }
 }
