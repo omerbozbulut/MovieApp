@@ -8,8 +8,16 @@
 import UIKit
 
 //MARK: - GET DATA FROM API
-extension SplashScreenViewController: Update{
+extension SplashScreenViewController: UpdateMovie{
     func getData(_ movieData: [Movie]) {
         movies = movieData
+    }
+}
+
+
+
+extension SplashScreenViewController: UpdateGenre {
+    func getData(_ genreData: [Genre]) {
+        genres = genreData
     }
 }

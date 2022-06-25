@@ -7,11 +7,9 @@
 
 import Foundation
 
-extension MovieListViewController: Update {
+extension MovieListViewController: UpdateMovie {
     func getData(_ movieData: [Movie]) {
         movies = movieData
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        reloadData()
     }
 }

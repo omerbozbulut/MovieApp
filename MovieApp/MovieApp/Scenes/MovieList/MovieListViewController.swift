@@ -14,6 +14,7 @@ class MovieListViewController: UIViewController {
         button.contentHorizontalAlignment = .left
         button.setTitle("Filter", for: .normal)
         button.tintColor = .black
+        button.addTarget(self, action: #selector(movieFilter), for: .touchUpInside)
         return button
     }()
     
@@ -28,17 +29,19 @@ class MovieListViewController: UIViewController {
     let searchContoller = UISearchController()
     
     let movieListViewModel = MovieListViewModel()
-    var service = WebService()
+    var movieService = MovieService()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
         searchContoller.searchResultsUpdater = self
         navigationItem.searchController = searchContoller
         
         tableView.delegate = self
         tableView.dataSource = self
-        service.delegate = self
+        movieService.delegate = self
+        
         configure()
     }
     
@@ -49,6 +52,12 @@ class MovieListViewController: UIViewController {
         
         configureConstraints()
     }
+    
+    func reloadData(){
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
 }
 
 //MARK: - Search Movie
@@ -58,11 +67,11 @@ extension MovieListViewController: UISearchResultsUpdating {
         guard let text = searchController.searchBar.text else {return}
         if !text.isEmpty {
             let url = NetworkConstants.Urls.fetchSearchMovieURL(name: text)
-            service.performRequest(urlString: url)
+            movieService.performMovieRequest(urlString: url)
         }
         else {
             let url = NetworkConstants.Urls.fetchUpComingMoviesURL()
-            service.performRequest(urlString: url)
+            movieService.performMovieRequest(urlString: url)
         }
     }
 }

@@ -37,20 +37,20 @@ class SplashScreenViewController: UIViewController {
         return animation
     }()
     
-    var service = WebService()
+    var movieService = MovieService()
+    var genreService = GenreService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        service.delegate = self
+        movieService.delegate = self
+        genreService.delegate = self
         configure()
     }
 
     func configure(){
-        let url = NetworkConstants.Urls.fetchUpComingMoviesURL()
-        service.performRequest(urlString: url)
-        completeDownload()
-           
+        
+        configureData()
         
         customView.addSubview(animationView)
         view.addSubview(titleLabel)
@@ -58,6 +58,14 @@ class SplashScreenViewController: UIViewController {
         
         view.backgroundColor = .black
         configureConstraints()
+    }
+    
+    func configureData(){
+        let movieUrl = NetworkConstants.Urls.fetchUpComingMoviesURL()
+        movieService.performMovieRequest(urlString: movieUrl)
+        let genreURl = NetworkConstants.Urls.fetchGenreListURL()
+        genreService.performGenreRequest(urlString: genreURl)
+        completeDownload()
     }
     
     func completeDownload() {
