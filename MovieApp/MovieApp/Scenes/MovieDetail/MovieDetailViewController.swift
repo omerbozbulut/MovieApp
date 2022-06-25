@@ -27,6 +27,7 @@ class MovieDetailViewController: UIViewController {
     let titleLabel: UILabel = {
         let title = UILabel()
         title.textColor = .white
+        title.textAlignment = .left
         title.lineBreakMode = .byWordWrapping
         title.numberOfLines = 0
         title.font = UIFont(name: Constants.Fonts.TrebuchetMSBold, size: 20)

@@ -23,14 +23,14 @@ extension MovieDetailViewController {
         image.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(24)
             make.leading.equalToSuperview().offset(16)
-            make.height.equalTo(240)
+            make.height.equalTo(216)
             make.width.equalTo(140)
         }
     }
     
     private func makeTitleLabelConstraints(){
         titleLabel.snp.makeConstraints { make in
-            make.leading.equalTo(image.snp.trailing).offset(32)
+            make.leading.equalTo(image.snp.trailing).offset(24)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(24)
             make.trailing.equalToSuperview().offset(-24)
         }
@@ -38,7 +38,7 @@ extension MovieDetailViewController {
     
     private func makeStarImageConstraints(){
         starImage.snp.makeConstraints { make in
-            make.bottom.equalTo(releaseDate.snp.top).offset(-8)
+            make.top.equalTo(titleLabel.snp.bottom).offset(24)
             make.leading.equalTo(image.snp.trailing).offset(24)
         }
     }
@@ -46,14 +46,15 @@ extension MovieDetailViewController {
     private func makeVoteConstraints(){
         vote.snp.makeConstraints { make in
             make.leading.equalTo(starImage.snp.trailing).offset(8)
-            make.bottom.equalTo(releaseDate.snp.top).offset(-8)
+            make.top.equalTo(titleLabel.snp.bottom).offset(24)
         }
     }
     
     private func makeReleaseDateConstraints(){
         releaseDate.snp.makeConstraints { make in
             make.leading.equalTo(image.snp.trailing).offset(24)
-            make.bottom.equalTo(image.snp.bottom).offset(-8)
+            make.top.equalTo(starImage.snp.bottom).offset(8)
+            make.trailing.equalToSuperview().offset(-8)
         }
     }
     

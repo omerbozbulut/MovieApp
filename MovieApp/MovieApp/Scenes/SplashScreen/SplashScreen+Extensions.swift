@@ -14,8 +14,6 @@ extension SplashScreenViewController: UpdateMovie{
     }
 }
 
-
-
 extension SplashScreenViewController: UpdateGenre {
     func getData(_ genreData: [Genre]) {
         genres = genreData

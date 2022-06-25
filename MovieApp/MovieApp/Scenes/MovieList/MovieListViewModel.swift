@@ -25,7 +25,7 @@ class MovieListViewModel{
     func filteredMovies(id: Int){
         let filtered = movieList.filter { movie in
             let ids =  movie.genre_ids.filter { genre in
-                return genre == id ? true : false
+                return genre == id
             }
             if !ids.isEmpty{
                 return true

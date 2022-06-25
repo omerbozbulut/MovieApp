@@ -83,6 +83,8 @@ class MovieTableViewCell: UITableViewCell {
         selectionStyle = .none
         backgroundColor = .black
         makeConstraints()
+        
+        
     }
     
     func configureMovie(movie: Movie){
@@ -101,7 +103,6 @@ class MovieTableViewCell: UITableViewCell {
         if !isItRegistered{
             isItRegistered = true
             viewModel.addBookmark(row)
-            bookmark.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
         }
     }
 }
