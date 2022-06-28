@@ -22,7 +22,7 @@ class MovieListViewModel{
         return genreList
     }
     
-    func filteredMovies(id: Int){
+    func filteredMovies(id: Int) {  // filter by genre
         let filtered = movieList.filter { movie in
             let ids =  movie.genre_ids.filter { genre in
                 return genre == id

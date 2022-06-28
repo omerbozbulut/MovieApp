@@ -27,7 +27,7 @@ class MovieTableViewCell: UITableViewCell {
     
     let starImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(systemName: "star.fill")
+        image.image = UIImage(systemName: Constants.SymbolNames.starSymbolName)
         image.tintColor = .systemYellow
         return image
     }()
@@ -46,7 +46,7 @@ class MovieTableViewCell: UITableViewCell {
         bookmark.setTitle("", for: .normal)
         bookmark.addTarget(self, action: #selector(addBookmark), for: .touchUpInside)
         bookmark.tintColor = .white
-        bookmark.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
+        bookmark.setBackgroundImage(UIImage(systemName: Constants.SymbolNames.bookmarkSymbolName), for: .normal)
         bookmark.imageView?.contentMode = .scaleAspectFill
         return bookmark
     }()
@@ -54,7 +54,7 @@ class MovieTableViewCell: UITableViewCell {
     let vote: UILabel = {
         let vote = UILabel()
         vote.textColor = .systemYellow
-        vote.font = UIFont(name: "helvetica", size: 18)
+        vote.font = UIFont(name: Constants.Fonts.helvetica, size: 18)
         return vote
     }()
     
@@ -83,23 +83,21 @@ class MovieTableViewCell: UITableViewCell {
         selectionStyle = .none
         backgroundColor = .black
         makeConstraints()
-        
-        
     }
     
-    func configureMovie(movie: Movie){
+    func configureMovie(movie: Movie) {
         image.kf.setImage(with: URL(string: NetworkConstants.Urls.fetchMovieImageURL(path:  movie.poster_path)))
         titleLabel.text = movie.title
         vote.text = "\(movie.vote_average)/10"
     }
     
-    func configureBookmarks(movie: Movie){
+    func configureBookmarks(movie: Movie) {
         image.kf.setImage(with: URL(string: NetworkConstants.Urls.fetchMovieImageURL(path: movie.poster_path)))
         titleLabel.text = movie.title
         vote.text = "\(movie.vote_average)/10"
     }
     
-    @objc func addBookmark(){
+    @objc func addBookmark() {
         if !isItRegistered{
             isItRegistered = true
             viewModel.addBookmark(row)

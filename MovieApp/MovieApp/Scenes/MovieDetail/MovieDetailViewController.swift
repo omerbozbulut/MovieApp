@@ -19,7 +19,7 @@ class MovieDetailViewController: UIViewController {
     
     let starImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(systemName: "star.fill")
+        image.image = UIImage(systemName: Constants.SymbolNames.starSymbolName)
         image.tintColor = .systemYellow
         return image
     }()
@@ -45,7 +45,7 @@ class MovieDetailViewController: UIViewController {
     let vote: UILabel = {
         let vote = UILabel()
         vote.textColor = .systemYellow
-        vote.font = UIFont(name: "helvetica", size: 18)
+        vote.font = UIFont(name: Constants.Fonts.helvetica, size: 18)
         return vote
     }()
     
@@ -98,7 +98,7 @@ class MovieDetailViewController: UIViewController {
     
     func navBarConfigure(){
         let backbutton = UIButton(type: .custom)
-        backbutton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        backbutton.setImage(UIImage(systemName: Constants.SymbolNames.chevronBackward), for: .normal)
         backbutton.tintColor = .white
         backbutton.setTitle("Back", for: .normal)
         backbutton.setTitleColor(.white, for: .normal)

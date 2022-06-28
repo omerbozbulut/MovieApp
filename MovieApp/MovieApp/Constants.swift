@@ -14,6 +14,14 @@ struct Constants {
     static let movieListTableViewIdentifier = "movieListCell"
     static let bookmarksTableViewIdentifier = "bookmarksCell"
     
+    struct SymbolNames {
+        static let starSymbolName = "star.fill"
+        static let bookmarkSymbolName = "bookmark"
+        static let bookmarkFillSymbolName = "bookmark.fill"
+        static let chevronBackward = "chevron.backward"
+    }
+    
+    
     struct tabBarTitles {
         static let movieListScene = "Movies"
         static let bookmarksScene = "Bookmarks"
@@ -27,6 +35,6 @@ struct Constants {
     }
     
     struct Titles {
-        static let splashScreenLabel = "M O V İ E S"
+        static let splashScreenLabel = "M O V I E S"
     }
 }

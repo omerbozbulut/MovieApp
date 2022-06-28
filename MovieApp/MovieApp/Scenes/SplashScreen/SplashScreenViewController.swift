@@ -27,7 +27,6 @@ class SplashScreenViewController: UIViewController {
         return view
     }()
     
-    
     let animationView: AnimationView = {
         let animation = AnimationView()
         animation.animation = Animation.named(Constants.animationName)
@@ -48,7 +47,7 @@ class SplashScreenViewController: UIViewController {
         configure()
     }
 
-    func configure(){
+    func configure() {
         
         configureData()
         
@@ -60,11 +59,12 @@ class SplashScreenViewController: UIViewController {
         configureConstraints()
     }
     
-    func configureData(){
+    func configureData() {
         let movieUrl = NetworkConstants.Urls.fetchUpComingMoviesURL()
         movieService.performMovieRequest(urlString: movieUrl)
         let genreURl = NetworkConstants.Urls.fetchGenreListURL()
         genreService.performGenreRequest(urlString: genreURl)
+        
         completeDownload()
     }
     
@@ -73,29 +73,5 @@ class SplashScreenViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
            self.tabBarConfigure()
         }
-    }
-    
-//MARK: - Tab bar
-    func tabBarConfigure(){
-        let tabBarVC = UITabBarController()
-        
-        let movieListVC = UINavigationController(rootViewController: MovieListViewController())
-        let bookmarksVC = UINavigationController(rootViewController:  BookmarksViewController())
-    
-        movieListVC.title = Constants.tabBarTitles.movieListScene
-        bookmarksVC.title = Constants.tabBarTitles.bookmarksScene
-        
-        tabBarVC.setViewControllers([movieListVC,bookmarksVC], animated: false)
-        
-        guard let items = tabBarVC.tabBar.items else {return}
-        
-        for img in 0..<Constants.tabBarImages.count{
-            items[img].image = UIImage(systemName: Constants.tabBarImages[img])
-        }
-        
-        tabBarVC.modalPresentationStyle = .fullScreen
-        tabBarVC.tabBar.tintColor = .white
-        tabBarVC.tabBar.barTintColor = .white
-        present(tabBarVC, animated: false)
     }
 }

@@ -18,10 +18,10 @@ extension BookmarksViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.bookmarksTableViewIdentifier, for: indexPath) as? MovieTableViewCell else {return UITableViewCell()}
         tableView.backgroundColor = .black
         
-        if let bookmarkMovies = viewModel.getMovies(){
+        if let bookmarkMovies = viewModel.getMovies() {
             cell.configureBookmarks(movie: bookmarkMovies[indexPath.row])
             cell.row = indexPath.row
-            cell.bookmark.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+            cell.bookmark.setBackgroundImage(UIImage(systemName: Constants.SymbolNames.bookmarkFillSymbolName), for: .normal)
         }
         
         return cell
