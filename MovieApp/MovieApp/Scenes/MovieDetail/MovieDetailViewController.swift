@@ -56,8 +56,7 @@ class MovieDetailViewController: UIViewController {
         return date
     }()
     
-    private var movieList = [Movie]()
-    private var row = 0
+    private var movie = Movie(id: 0, title: "", overview: "", vote_average: 0.0, release_date: "", poster_path: "", genre_ids: [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,10 +64,9 @@ class MovieDetailViewController: UIViewController {
         configure()
     }
     
-    init(_ row: Int, _ movieList: [Movie]){
+    init(_ movie: Movie){
         super.init(nibName: nil, bundle: nil)
-        self.row = row
-        self.movieList = movieList
+        self.movie = movie
     }
     
     required init?(coder: NSCoder) {
@@ -89,8 +87,6 @@ class MovieDetailViewController: UIViewController {
     }
     
     func configureMovie(){
-        let movie = movieList[row]
-        
         image.kf.setImage(with: URL(string: NetworkConstants.Urls.fetchMovieImageURL(path:  movie.poster_path)))
         titleLabel.text = movie.title
         overview.text = movie.overview
