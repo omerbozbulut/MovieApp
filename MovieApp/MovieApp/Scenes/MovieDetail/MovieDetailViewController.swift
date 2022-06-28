@@ -56,7 +56,7 @@ class MovieDetailViewController: UIViewController {
         return date
     }()
     
-    private let viewModel = MovieDetailViewModel()
+    private var movieList = [Movie]()
     private var row = 0
     
     override func viewDidLoad() {
@@ -65,9 +65,10 @@ class MovieDetailViewController: UIViewController {
         configure()
     }
     
-    init(_ row: Int){
+    init(_ row: Int, _ movieList: [Movie]){
         super.init(nibName: nil, bundle: nil)
         self.row = row
+        self.movieList = movieList
     }
     
     required init?(coder: NSCoder) {
@@ -88,7 +89,8 @@ class MovieDetailViewController: UIViewController {
     }
     
     func configureMovie(){
-        let movie = viewModel.getMovies()[row]
+        let movie = movieList[row]
+        
         image.kf.setImage(with: URL(string: NetworkConstants.Urls.fetchMovieImageURL(path:  movie.poster_path)))
         titleLabel.text = movie.title
         overview.text = movie.overview

@@ -10,21 +10,21 @@ import UIKit
 extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieListViewModel.getMovies().count
+        return viewModel.getMovies().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.movieListTableViewIdentifier, for: indexPath) as? MovieTableViewCell else {return UITableViewCell()}
         tableView.backgroundColor = .black
     
-        let movie = movieListViewModel.getMovies()[indexPath.row]
+        let movie = viewModel.getMovies()[indexPath.row]
         cell.configureMovie(movie: movie)
         cell.row = indexPath.row
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let destinationVC = UINavigationController(rootViewController: MovieDetailViewController(indexPath.row))
+        let destinationVC = UINavigationController(rootViewController: MovieDetailViewController(indexPath.row, viewModel.getMovies()))
         destinationVC.modalPresentationStyle = .fullScreen
         present(destinationVC, animated: false)
     }

@@ -11,18 +11,18 @@ extension MovieListViewController {
     
     @objc func  movieFilter() {
         
-        let genres = movieListViewModel.getGenres()
+        let genres = viewModel.getGenres()
         let alert = UIAlertController(title: "Filter", message: nil, preferredStyle: .actionSheet)
         
         let All = UIAlertAction(title: "All", style: .default, handler: {(_) in
-            self.movieListViewModel.getAllMovies()
+            self.viewModel.getAllMovies()
             self.reloadData()
         })
         alert.addAction(All)
         
         for genre in genres {
             let Button = UIAlertAction(title: genre.name, style: .default, handler: {(_) in
-                self.movieListViewModel.filteredMovies(id: genre.id)
+                self.viewModel.filteredMovies(id: genre.id)
                 self.reloadData()
             })
             alert.addAction(Button)

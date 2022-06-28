@@ -28,7 +28,7 @@ class MovieListViewController: UIViewController {
     
     let searchContoller = UISearchController()
     
-    let movieListViewModel = MovieListViewModel()
+    let viewModel = MovieListViewModel()
     var movieService = MovieService()
     
     
@@ -69,7 +69,7 @@ extension MovieListViewController: UISearchResultsUpdating {
             movieService.performMovieRequest(urlString: url) { results, errorMessage  in
                 if let results = results {
                     movies = results
-                    self.movieListViewModel.getAllMovies()
+                    self.viewModel.getAllMovies()
                     self.reloadData()
                 }
             }
@@ -79,7 +79,7 @@ extension MovieListViewController: UISearchResultsUpdating {
             movieService.performMovieRequest(urlString: url) { results, errorMessage  in
                 if let results = results {
                     movies = results
-                    self.movieListViewModel.getAllMovies()
+                    self.viewModel.getAllMovies()
                     self.reloadData()
                 }
             }

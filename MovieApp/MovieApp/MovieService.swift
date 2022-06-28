@@ -7,13 +7,11 @@
 
 import Foundation
 
-
 typealias getMovie = ([Movie]?, String) -> Void
 
 class MovieService {
     
-    var errorMessage = ""
-    var movies: [Movie] = []
+    private var errorMessage = ""
     
     func performMovieRequest(urlString: String, completion: @escaping getMovie) {
         guard let url = URL(string: urlString) else {return}
@@ -33,7 +31,6 @@ class MovieService {
         }
         task.resume()
     }
-    
     
     func parseJSON(_ movieData : Data)->[Movie]? {
         let decoder = JSONDecoder()
