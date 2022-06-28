@@ -1,5 +1,5 @@
 # MovieApp
-The application can list movies. You can go to the details of the movie. You can add movies to your bookmarks. You can filter movies by genre. You can search movie.
+The application can list movies, go to the details of the movie, add movies to your bookmarks, filter movies by genre and search movie.
 
 
 ## What did I use:
