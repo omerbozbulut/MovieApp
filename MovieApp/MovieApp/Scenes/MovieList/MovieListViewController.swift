@@ -40,7 +40,6 @@ class MovieListViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        movieService.delegate = self
         
         configure()
     }
@@ -67,11 +66,23 @@ extension MovieListViewController: UISearchResultsUpdating {
         guard let text = searchController.searchBar.text else {return}
         if !text.isEmpty {
             let url = NetworkConstants.Urls.fetchSearchMovieURL(name: text)
-            movieService.performMovieRequest(urlString: url)
+            movieService.performMovieRequest(urlString: url) { results, errorMessage  in
+                if let results = results {
+                    movies = results
+                    self.movieListViewModel.getAllMovies()
+                    self.reloadData()
+                }
+            }
         }
         else {
             let url = NetworkConstants.Urls.fetchUpComingMoviesURL()
-            movieService.performMovieRequest(urlString: url)
+            movieService.performMovieRequest(urlString: url) { results, errorMessage  in
+                if let results = results {
+                    movies = results
+                    self.movieListViewModel.getAllMovies()
+                    self.reloadData()
+                }
+            }
         }
     }
 }

@@ -13,8 +13,11 @@ class MovieListViewModel{
     private var movieList = movies
     
     func getMovies()->[Movie]{
-        movieList = movies
         return movieList
+    }
+    
+    func getAllMovies(){
+        movieList = movies
     }
     
     func getGenres()->[Genre]{
@@ -23,7 +26,8 @@ class MovieListViewModel{
     }
     
     func filteredMovies(id: Int) {  // filter by genre
-        let filtered = movieList.filter { movie in
+        getAllMovies()
+        let filtered = getMovies().filter { movie in
             let ids =  movie.genre_ids.filter { genre in
                 return genre == id
             }
@@ -32,6 +36,6 @@ class MovieListViewModel{
             }
             return false
         }
-        movies = filtered
+        movieList = filtered
     }
 }

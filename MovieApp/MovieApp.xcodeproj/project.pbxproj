@@ -14,7 +14,6 @@
 		172A7D502862118A003D8B40 /* MovieList+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172A7D4F2862118A003D8B40 /* MovieList+TableView.swift */; };
 		172A7D52286217D4003D8B40 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172A7D51286217D4003D8B40 /* MovieService.swift */; };
 		172A7D54286227C6003D8B40 /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172A7D53286227C6003D8B40 /* MovieListViewModel.swift */; };
-		172A7D5628623AD7003D8B40 /* SplashScreen+FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172A7D5528623AD7003D8B40 /* SplashScreen+FetchData.swift */; };
 		172A7D5928623B78003D8B40 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172A7D5828623B78003D8B40 /* MovieTableViewCell.swift */; };
 		172A7D5B28624A24003D8B40 /* TableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172A7D5A28624A24003D8B40 /* TableCellViewModel.swift */; };
 		172A7D5D28624A35003D8B40 /* TableCell+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172A7D5C28624A35003D8B40 /* TableCell+Constraints.swift */; };
@@ -31,7 +30,6 @@
 		17303BD42861EE6B0074A7C3 /* SplashScreen+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17303BD32861EE6B0074A7C3 /* SplashScreen+Constraints.swift */; };
 		1745A4CF28662D0800D4CABF /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1745A4CE28662D0800D4CABF /* MovieDetailViewModel.swift */; };
 		174614A2286B58F80019A475 /* SplashScreen+TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174614A1286B58F80019A475 /* SplashScreen+TabBar.swift */; };
-		1755BE58286731A100BF5E4E /* MovieList+FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1755BE57286731A100BF5E4E /* MovieList+FetchData.swift */; };
 		1755BE5A28673C5600BF5E4E /* MovieList+Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1755BE5928673C5600BF5E4E /* MovieList+Filter.swift */; };
 		1755BE5C28675D9300BF5E4E /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1755BE5B28675D9300BF5E4E /* Genre.swift */; };
 		1755BE5E28675F5C00BF5E4E /* GenreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1755BE5D28675F5C00BF5E4E /* GenreService.swift */; };
@@ -54,7 +52,6 @@
 		172A7D4F2862118A003D8B40 /* MovieList+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieList+TableView.swift"; sourceTree = "<group>"; };
 		172A7D51286217D4003D8B40 /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
 		172A7D53286227C6003D8B40 /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
-		172A7D5528623AD7003D8B40 /* SplashScreen+FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SplashScreen+FetchData.swift"; sourceTree = "<group>"; };
 		172A7D5828623B78003D8B40 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		172A7D5A28624A24003D8B40 /* TableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellViewModel.swift; sourceTree = "<group>"; };
 		172A7D5C28624A35003D8B40 /* TableCell+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableCell+Constraints.swift"; sourceTree = "<group>"; };
@@ -71,7 +68,6 @@
 		17303BD32861EE6B0074A7C3 /* SplashScreen+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SplashScreen+Constraints.swift"; sourceTree = "<group>"; };
 		1745A4CE28662D0800D4CABF /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 		174614A1286B58F80019A475 /* SplashScreen+TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SplashScreen+TabBar.swift"; sourceTree = "<group>"; };
-		1755BE57286731A100BF5E4E /* MovieList+FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieList+FetchData.swift"; sourceTree = "<group>"; };
 		1755BE5928673C5600BF5E4E /* MovieList+Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieList+Filter.swift"; sourceTree = "<group>"; };
 		1755BE5B28675D9300BF5E4E /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		1755BE5D28675F5C00BF5E4E /* GenreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreService.swift; sourceTree = "<group>"; };
@@ -113,7 +109,6 @@
 				172A7D4828620BB9003D8B40 /* MovieListViewController.swift */,
 				172A7D4D28621119003D8B40 /* MovieList+Constraints.swift */,
 				172A7D4F2862118A003D8B40 /* MovieList+TableView.swift */,
-				1755BE57286731A100BF5E4E /* MovieList+FetchData.swift */,
 				1755BE5928673C5600BF5E4E /* MovieList+Filter.swift */,
 				172A7D53286227C6003D8B40 /* MovieListViewModel.swift */,
 			);
@@ -216,7 +211,6 @@
 			children = (
 				17303BB5285F47A10074A7C3 /* SplashScreenViewController.swift */,
 				17303BD32861EE6B0074A7C3 /* SplashScreen+Constraints.swift */,
-				172A7D5528623AD7003D8B40 /* SplashScreen+FetchData.swift */,
 				174614A1286B58F80019A475 /* SplashScreen+TabBar.swift */,
 			);
 			path = SplashScreen;
@@ -406,8 +400,6 @@
 				1755BE5C28675D9300BF5E4E /* Genre.swift in Sources */,
 				1776135F2863A918006CCA08 /* MovieDetailViewController.swift in Sources */,
 				172A7D52286217D4003D8B40 /* MovieService.swift in Sources */,
-				172A7D5628623AD7003D8B40 /* SplashScreen+FetchData.swift in Sources */,
-				1755BE58286731A100BF5E4E /* MovieList+FetchData.swift in Sources */,
 				172A7D5F28624F01003D8B40 /* NetworkConstants.swift in Sources */,
 				17C4EBB3286481E200D14E0E /* Bookmarks+Constraints.swift in Sources */,
 				172A7D4928620BB9003D8B40 /* MovieListViewController.swift in Sources */,

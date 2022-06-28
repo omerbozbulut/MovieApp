@@ -7,25 +7,27 @@
 
 import Foundation
 
-protocol UpdateMovie {
-    func getData(_ movieData: [Movie])
-}
+
+typealias getMovie = ([Movie]?, String) -> Void
 
 class MovieService {
     
-    var delegate: UpdateMovie?
+    var errorMessage = ""
+    var movies: [Movie] = []
     
-    func performMovieRequest(urlString: String) {
+    func performMovieRequest(urlString: String, completion: @escaping getMovie) {
         guard let url = URL(string: urlString) else {return}
         
         let urlSession = URLSession(configuration: .default)
-        let task = urlSession.dataTask(with: url) { (data, responce, error) in
-            if error != nil{
-                return
-            }
-            if let safeData = data {
-                if let moviesData = self.parseJSON(safeData){
-                    self.delegate?.getData(moviesData)
+        let task = urlSession.dataTask(with: url) { [weak self] (data, responce, error) in
+            if let error = error {
+                self?.errorMessage += "DataTask error: " + error.localizedDescription + "\n"
+            } else if let safeData = data,
+                      let response = responce as? HTTPURLResponse,
+                      response.statusCode == 200 {
+                
+                if let movieData = self?.parseJSON(safeData){
+                    completion(movieData, self?.errorMessage ?? "")
                 }
             }
         }

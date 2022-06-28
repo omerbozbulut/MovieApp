@@ -7,25 +7,26 @@
 
 import Foundation
 
-protocol UpdateGenre {
-    func getData(_ genreData: [Genre])
-}
+typealias getGenre = ([Genre]?, String) -> Void
 
 class GenreService {
     
-    var delegate: UpdateGenre?
+    var errorMessage = ""
+    var genres: [Genre] = []
     
-    func performGenreRequest(urlString: String){
+    func performGenreRequest(urlString: String, completion: @escaping getGenre){
         guard let url = URL(string: urlString) else {return}
         
         let urlSession = URLSession(configuration: .default)
-        let task = urlSession.dataTask(with: url) { (data, responce, error) in
-            if error != nil{
-                return
-            }
-            if let safeData = data {
+        let task = urlSession.dataTask(with: url) { [self] (data, responce, error) in
+            if let error = error {
+                self.errorMessage += "DataTask error: " + error.localizedDescription + "\n"
+            } else if let safeData = data,
+                      let response = responce as? HTTPURLResponse,
+                      response.statusCode == 200 {
+                
                 if let genreData = self.parseJSON(safeData){
-                    self.delegate?.getData(genreData)
+                    completion(genreData, errorMessage)
                 }
             }
         }

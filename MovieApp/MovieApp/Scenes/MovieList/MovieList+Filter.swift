@@ -11,13 +11,13 @@ extension MovieListViewController {
     
     @objc func  movieFilter() {
         
-        let movieUrl = NetworkConstants.Urls.fetchUpComingMoviesURL()
-        movieService.performMovieRequest(urlString: movieUrl)
-        
         let genres = movieListViewModel.getGenres()
         let alert = UIAlertController(title: "Filter", message: nil, preferredStyle: .actionSheet)
         
-        let All = UIAlertAction(title: "All", style: .default, handler: nil)
+        let All = UIAlertAction(title: "All", style: .default, handler: {(_) in
+            self.movieListViewModel.getAllMovies()
+            self.reloadData()
+        })
         alert.addAction(All)
         
         for genre in genres {

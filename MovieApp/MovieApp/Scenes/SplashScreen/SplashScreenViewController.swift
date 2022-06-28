@@ -42,8 +42,6 @@ class SplashScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        movieService.delegate = self
-        genreService.delegate = self
         configure()
     }
 
@@ -61,10 +59,19 @@ class SplashScreenViewController: UIViewController {
     
     func configureData() {
         let movieUrl = NetworkConstants.Urls.fetchUpComingMoviesURL()
-        movieService.performMovieRequest(urlString: movieUrl)
-        let genreURl = NetworkConstants.Urls.fetchGenreListURL()
-        genreService.performGenreRequest(urlString: genreURl)
+        movieService.performMovieRequest(urlString: movieUrl) { results, errorMessage  in
+            if let results = results {
+              movies = results
+            }
+        }
         
+        let genreURl = NetworkConstants.Urls.fetchGenreListURL()
+        genreService.performGenreRequest(urlString: genreURl) { results, errorMessage  in
+            if let results = results {
+              genres = results
+            }
+        }
+    
         completeDownload()
     }
     
