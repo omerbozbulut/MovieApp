@@ -10,7 +10,6 @@ import Foundation
 class TableCellViewModel {
 
     private var bookmarks = [Movie]()
-    private var movieList = movies
     
     func updateUserDefaults() {
         UserDefaults.standard.set(try? PropertyListEncoder().encode(bookmarks), forKey: "Movie")

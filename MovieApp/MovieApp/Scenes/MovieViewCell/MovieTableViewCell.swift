@@ -101,7 +101,7 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     @objc func addBookmark() {
-        if !isItRegistered{
+        if !isItRegistered {
             isItRegistered = true
             viewModel.addBookmark(movie)
         }

@@ -21,8 +21,7 @@ struct Constants {
         static let chevronBackward = "chevron.backward"
     }
     
-    
-    struct tabBarTitles {
+    struct TabBarTitles {
         static let movieListScene = "Movies"
         static let bookmarksScene = "Bookmarks"
     }
