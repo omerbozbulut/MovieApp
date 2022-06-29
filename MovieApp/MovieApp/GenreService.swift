@@ -20,7 +20,7 @@ class GenreService {
                 completion(.failure(.taskError))
             }
             guard let safeData = data else {
-                completion(.failure(.moviesNotFound))
+                completion(.failure(.genreNotFound))
                 return
             }
             if let movieData = self.parseJSON(safeData) {
@@ -45,5 +45,5 @@ class GenreService {
 enum GenreNetworkError: Error {
     case taskError
     case badURL
-    case moviesNotFound
+    case genreNotFound
 }

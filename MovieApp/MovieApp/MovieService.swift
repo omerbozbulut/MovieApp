@@ -9,7 +9,7 @@ import Foundation
 
 class MovieService {
     
-    func fetchMovie(urlString: String, completion: @escaping (Result<[Movie], NetworkError>)->Void) {
+    func fetchMovie(urlString: String, completion: @escaping (Result<[Movie], MovieNetworkError>)->Void) {
         guard let url = URL(string: urlString) else {
             completion(.failure(.badURL))
             return
@@ -42,7 +42,7 @@ class MovieService {
     }
 }
 
-enum NetworkError: Error {
+enum MovieNetworkError: Error {
     case taskError
     case badURL
     case moviesNotFound
