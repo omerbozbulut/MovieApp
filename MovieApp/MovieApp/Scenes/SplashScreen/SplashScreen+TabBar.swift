@@ -29,7 +29,7 @@ extension SplashScreenViewController{
         tabBarVC.modalPresentationStyle = .fullScreen
         tabBarVC.tabBar.tintColor = .white
         tabBarVC.tabBar.barTintColor = .white
-        present(tabBarVC, animated: false)
+        self.view.window?.rootViewController = tabBarVC
     }
 }
 

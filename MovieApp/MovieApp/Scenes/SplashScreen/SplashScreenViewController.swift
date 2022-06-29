@@ -39,8 +39,8 @@ class SplashScreenViewController: UIViewController {
         return animation
     }()
     
-    var movieService = MovieService()
     var genreService = GenreService()
+    var movieService = MovieService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,26 +60,45 @@ class SplashScreenViewController: UIViewController {
         configureConstraints()
     }
     
-    func configureData() {
-        let movieUrl = NetworkConstants.Urls.fetchUpComingMoviesURL()
-        movieService.performMovieRequest(urlString: movieUrl) { results, errorMessage  in
-            if let results = results {
-              movies = results
-            }
-        }
-        
+    func configureData() {/*
         let genreURl = NetworkConstants.Urls.fetchGenreListURL()
         genreService.performGenreRequest(urlString: genreURl) { results, errorMessage  in
             if let results = results {
               genres = results
             }
+        }*/
+        
+        let movieUrl = NetworkConstants.Urls.fetchUpComingMoviesURL()
+        movieService.fetchMovie(urlString: movieUrl) { result in
+            switch result {
+            case .success(let movieList):
+                movies = movieList
+                self.completeDownload()
+            case .failure(let error):
+                self.errorAlert(errorMessage: error.localizedDescription)
+            }
         }
+        
+        let genreUrl = NetworkConstants.Urls.fetchGenreListURL()
+        genreService.fetchGenre(urlString: genreUrl) { result in
+            switch result {
+            case .success(let genreList):
+                genres = genreList
+                self.completeDownload()
+            case .failure(let error):
+                self.errorAlert(errorMessage: error.localizedDescription)
+            }
+        }
+    }
     
-        completeDownload()
+    func errorAlert(errorMessage: String){
+        let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .actionSheet)
+        let error = UIAlertAction(title: "Error", style: .default, handler: nil)
+        alert.addAction(error)
     }
     
     func completeDownload() {
-        let delayInSeconds = 3.0
+        let delayInSeconds = 2.0
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
            self.tabBarConfigure()
         }

@@ -57,6 +57,12 @@ class MovieListViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
+    
+    func errorAlert(errorMessage: String){
+        let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .actionSheet)
+        let error = UIAlertAction(title: "Error", style: .default, handler: nil)
+        alert.addAction(error)
+    }
 }
 
 //MARK: - Search Movie
@@ -65,22 +71,28 @@ extension MovieListViewController: UISearchResultsUpdating {
         searchController.searchBar.searchTextField.textColor = .white
         guard let text = searchController.searchBar.text else {return}
         if !text.isEmpty {
-            let url = NetworkConstants.Urls.fetchSearchMovieURL(name: text)
-            movieService.performMovieRequest(urlString: url) { results, errorMessage  in
-                if let results = results {
-                    movies = results
+            let movieUrl = NetworkConstants.Urls.fetchUpComingMoviesURL()
+            movieService.fetchMovie(urlString: movieUrl) { result in
+                switch result {
+                case .success(let movieList):
+                    movies = movieList
                     self.viewModel.getAllMovies()
                     self.reloadData()
+                case .failure(let error):
+                    self.errorAlert(errorMessage: error.localizedDescription)
                 }
             }
         }
         else {
-            let url = NetworkConstants.Urls.fetchUpComingMoviesURL()
-            movieService.performMovieRequest(urlString: url) { results, errorMessage  in
-                if let results = results {
-                    movies = results
+            let genreUrl = NetworkConstants.Urls.fetchUpComingMoviesURL()
+            movieService.fetchMovie(urlString: genreUrl) { result in
+                switch result {
+                case .success(let movieList):
+                    movies = movieList
                     self.viewModel.getAllMovies()
                     self.reloadData()
+                case .failure(let error):
+                    self.errorAlert(errorMessage: error.localizedDescription)
                 }
             }
         }

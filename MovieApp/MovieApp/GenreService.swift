@@ -7,27 +7,24 @@
 
 import Foundation
 
-typealias getGenre = ([Genre]?, String) -> Void
-
 class GenreService {
     
-    var errorMessage = ""
-    var genres: [Genre] = []
-    
-    func performGenreRequest(urlString: String, completion: @escaping getGenre){
-        guard let url = URL(string: urlString) else {return}
-        
+    func fetchGenre(urlString: String, completion: @escaping (Result<[Genre], GenreNetworkError>)->Void) {
+        guard let url = URL(string: urlString) else {
+            completion(.failure(.badURL))
+            return
+        }
         let urlSession = URLSession(configuration: .default)
-        let task = urlSession.dataTask(with: url) { [self] (data, responce, error) in
-            if let error = error {
-                self.errorMessage += "DataTask error: " + error.localizedDescription + "\n"
-            } else if let safeData = data,
-                      let response = responce as? HTTPURLResponse,
-                      response.statusCode == 200 {
-                
-                if let genreData = self.parseJSON(safeData){
-                    completion(genreData, errorMessage)
-                }
+        let task = urlSession.dataTask(with: url) { (data, responce, error) in
+            if error != nil {
+                completion(.failure(.taskError))
+            }
+            guard let safeData = data else {
+                completion(.failure(.moviesNotFound))
+                return
+            }
+            if let movieData = self.parseJSON(safeData) {
+                completion(.success(movieData))
             }
         }
         task.resume()
@@ -38,9 +35,15 @@ class GenreService {
         do {
             let decodedData = try decoder.decode(Genres.self, from: genreData)
             let genres = decodedData.genres
-            return genres
+                return genres
         } catch{
             return nil
         }
     }
+}
+
+enum GenreNetworkError: Error {
+    case taskError
+    case badURL
+    case moviesNotFound
 }

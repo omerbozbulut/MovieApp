@@ -1,32 +1,30 @@
 //
-//  KingfisherService.swift
+//  MovieService2.swift
 //  MovieApp
 //
-//  Created by omer faruk bozbulut on 21.06.2022.
+//  Created by omer faruk bozbulut on 29.06.2022.
 //
 
 import Foundation
 
-typealias getMovie = ([Movie]?, String) -> Void
-
 class MovieService {
     
-    private var errorMessage = ""
-    
-    func performMovieRequest(urlString: String, completion: @escaping getMovie) {
-        guard let url = URL(string: urlString) else {return}
-        
+    func fetchMovie(urlString: String, completion: @escaping (Result<[Movie], NetworkError>)->Void) {
+        guard let url = URL(string: urlString) else {
+            completion(.failure(.badURL))
+            return
+        }
         let urlSession = URLSession(configuration: .default)
-        let task = urlSession.dataTask(with: url) { [weak self] (data, responce, error) in
-            if let error = error {
-                self?.errorMessage += "DataTask error: " + error.localizedDescription + "\n"
-            } else if let safeData = data,
-                      let response = responce as? HTTPURLResponse,
-                      response.statusCode == 200 {
-                
-                if let movieData = self?.parseJSON(safeData){
-                    completion(movieData, self?.errorMessage ?? "")
-                }
+        let task = urlSession.dataTask(with: url) { (data, responce, error) in
+            if error != nil {
+                completion(.failure(.taskError))
+            }
+            guard let safeData = data else {
+                completion(.failure(.moviesNotFound))
+                return
+            }
+            if let movieData = self.parseJSON(safeData) {
+                completion(.success(movieData))
             }
         }
         task.resume()
@@ -42,4 +40,10 @@ class MovieService {
             return nil
         }
     }
+}
+
+enum NetworkError: Error {
+    case taskError
+    case badURL
+    case moviesNotFound
 }
