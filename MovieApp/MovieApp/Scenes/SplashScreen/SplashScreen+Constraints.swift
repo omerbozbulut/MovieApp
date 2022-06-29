@@ -18,8 +18,7 @@ extension SplashScreenViewController {
     private func makeTitleConstraints(){
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalTo(view.center.x)
-            make.leading.equalToSuperview().offset(40)
-            make.trailing.equalToSuperview().offset(-40)
+            make.width.equalTo(view.snp.width).multipliedBy(0.75)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(64)
         }
     }

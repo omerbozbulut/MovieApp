@@ -18,7 +18,7 @@ class SplashScreenViewController: UIViewController {
         title.adjustsFontSizeToFitWidth = true
         title.minimumScaleFactor = 0.5
         title.textColor = .systemIndigo
-        title.contentMode = .left
+        title.contentMode = .center
         return title
     }()
     
@@ -60,13 +60,7 @@ class SplashScreenViewController: UIViewController {
         configureConstraints()
     }
     
-    func configureData() {/*
-        let genreURl = NetworkConstants.Urls.fetchGenreListURL()
-        genreService.performGenreRequest(urlString: genreURl) { results, errorMessage  in
-            if let results = results {
-              genres = results
-            }
-        }*/
+    func configureData() {
         
         let movieUrl = NetworkConstants.Urls.fetchUpComingMoviesURL()
         movieService.fetchMovie(urlString: movieUrl) { result in
