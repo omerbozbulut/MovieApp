@@ -26,17 +26,20 @@ class MovieListViewController: UIViewController {
         return tableView
     }()
     
-    let searchContoller = UISearchController()
+    lazy var searchController: UISearchController = {
+        let searchController = UISearchController()
+        searchController.searchResultsUpdater = self
+        return searchController
+    }()
     
     let viewModel = MovieListViewModel()
-    var movieService = MovieService()
+    private let movieService = MovieService()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        searchContoller.searchResultsUpdater = self
-        navigationItem.searchController = searchContoller
+        
+        navigationItem.searchController = searchController
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -70,30 +73,23 @@ extension MovieListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         searchController.searchBar.searchTextField.textColor = .white
         guard let text = searchController.searchBar.text else {return}
+        
+        var url = ""
+        
         if !text.isEmpty {
-            let movieUrl = NetworkConstants.Urls.fetchUpComingMoviesURL()
-            movieService.fetchMovie(urlString: movieUrl) { result in
-                switch result {
-                case .success(let movieList):
-                    movies = movieList
-                    self.viewModel.getAllMovies()
-                    self.reloadData()
-                case .failure(let error):
-                    self.errorAlert(errorMessage: error.localizedDescription)
-                }
-            }
+            url = NetworkConstants.Urls.fetchSearchMovieURL(name: text)
         }
         else {
-            let genreUrl = NetworkConstants.Urls.fetchUpComingMoviesURL()
-            movieService.fetchMovie(urlString: genreUrl) { result in
-                switch result {
-                case .success(let movieList):
-                    movies = movieList
-                    self.viewModel.getAllMovies()
-                    self.reloadData()
-                case .failure(let error):
-                    self.errorAlert(errorMessage: error.localizedDescription)
-                }
+            url = NetworkConstants.Urls.fetchUpComingMoviesURL()
+        }
+        movieService.fetchMovie(urlString: url) { result in
+            switch result {
+            case .success(let movieList):
+                movies = movieList
+                self.viewModel.getAllMovies()
+                self.reloadData()
+            case .failure(let error):
+                self.errorAlert(errorMessage: error.localizedDescription)
             }
         }
     }
