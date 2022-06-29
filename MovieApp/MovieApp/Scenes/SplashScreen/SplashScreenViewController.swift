@@ -14,8 +14,11 @@ class SplashScreenViewController: UIViewController {
     let titleLabel: CLTypingLabel = {
         let title = CLTypingLabel()
         title.text = Constants.Titles.splashScreenLabel
-        title.font = UIFont(name: Constants.Fonts.helveticaBOLD, size: 55)
+        title.font = UIFont(name: Constants.Fonts.helveticaBOLD, size: 57)
+        title.adjustsFontSizeToFitWidth = true
+        title.minimumScaleFactor = 0.5
         title.textColor = .systemIndigo
+        title.contentMode = .left
         return title
     }()
     

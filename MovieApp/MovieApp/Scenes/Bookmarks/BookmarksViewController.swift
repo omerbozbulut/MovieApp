@@ -14,6 +14,7 @@ class BookmarksViewController: UIViewController {
         tableView.rowHeight = 144
         tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: Constants.bookmarksTableViewIdentifier)
         tableView.separatorColor = .black
+        tableView.backgroundColor = .black
         return tableView
     }()
     
@@ -27,6 +28,7 @@ class BookmarksViewController: UIViewController {
         
         view.addSubview(tableView)
         view.backgroundColor = .black
+        view.tintColor = .black
         configureConstraints()
     }
     

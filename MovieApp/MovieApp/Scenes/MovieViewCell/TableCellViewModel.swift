@@ -25,9 +25,9 @@ class TableCellViewModel {
          return [Movie]()
     }
     
-    func addBookmark(_ row: Int){
+    func addBookmark(_ movie: Movie){
         bookmarks = setBookmarks()
-        bookmarks.append(movieList[row])
+        bookmarks.append(movie)
         updateUserDefaults()
     }
 }

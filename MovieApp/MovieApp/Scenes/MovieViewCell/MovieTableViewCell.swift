@@ -59,12 +59,13 @@ class MovieTableViewCell: UITableViewCell {
     }()
     
     private let viewModel = TableCellViewModel()
-    var row = 0
+    
+    private var movie = Movie(id: 0, title: "", overview: "", vote_average: 0.0, release_date: "", poster_path: "", genre_ids: [])
     var isItRegistered = false
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+        
         configure()
     }
 
@@ -89,6 +90,8 @@ class MovieTableViewCell: UITableViewCell {
         image.kf.setImage(with: URL(string: NetworkConstants.Urls.fetchMovieImageURL(path:  movie.poster_path)))
         titleLabel.text = movie.title
         vote.text = "\(movie.vote_average)/10"
+        
+        self.movie = movie
     }
     
     func configureBookmarks(movie: Movie) {
@@ -100,7 +103,7 @@ class MovieTableViewCell: UITableViewCell {
     @objc func addBookmark() {
         if !isItRegistered{
             isItRegistered = true
-            viewModel.addBookmark(row)
+            viewModel.addBookmark(movie)
         }
     }
 }

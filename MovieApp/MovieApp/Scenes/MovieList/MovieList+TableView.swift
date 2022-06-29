@@ -19,7 +19,6 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
         let movie = viewModel.getMovies()[indexPath.row]
         cell.configureMovie(movie: movie)
-        cell.row = indexPath.row
         return cell
     }
     
