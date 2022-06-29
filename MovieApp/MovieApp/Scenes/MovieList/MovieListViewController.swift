@@ -18,8 +18,10 @@ class MovieListViewController: UIViewController {
         return button
     }()
     
-    let tableView: UITableView = {
+    lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.rowHeight = 144
         tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: Constants.movieListTableViewIdentifier)
         tableView.separatorColor = .black
@@ -39,11 +41,6 @@ class MovieListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.searchController = searchController
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        
         configure()
     }
     
@@ -53,6 +50,7 @@ class MovieListViewController: UIViewController {
         view.backgroundColor = .black
         
         configureConstraints()
+        navigationItem.searchController = searchController
     }
     
     func reloadData(){
@@ -65,6 +63,7 @@ class MovieListViewController: UIViewController {
         let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .actionSheet)
         let error = UIAlertAction(title: "Error", style: .default, handler: nil)
         alert.addAction(error)
+        present(alert, animated: false)
     }
 }
 
