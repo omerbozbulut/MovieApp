@@ -13,10 +13,10 @@ The application can list movies, go to the details of the movie, add movies to y
 - Singleton
 
 ## Third-party libraries
-- Kingfisher
-- Snapkit
-- Lottie animations
-- CLTypingLabel
+- [Kingfisher](https://github.com/onevcat/Kingfisher)
+- [Snapkit](https://github.com/SnapKit/SnapKit)
+- [Lottie animations](https://github.com/airbnb/lottie-ios)
+- [CLTypingLabel](https://github.com/cl7/CLTypingLabel)
 
 ## The app looks like this:
 
