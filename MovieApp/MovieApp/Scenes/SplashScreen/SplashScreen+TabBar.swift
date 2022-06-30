@@ -14,7 +14,7 @@ extension SplashScreenViewController{
         
         let movieListVC = UINavigationController(rootViewController: MovieListViewController())
         let bookmarksVC = UINavigationController(rootViewController: BookmarksViewController())
-
+    
         movieListVC.title = Constants.TabBarTitles.movieListScene
         bookmarksVC.title = Constants.TabBarTitles.bookmarksScene
     

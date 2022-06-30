@@ -38,4 +38,8 @@ class MovieListViewModel{
         }
         movieList = filtered
     }
+    
+    func searchedMovies(movieData: [Movie]){
+        movieList = movieData
+    }
 }
