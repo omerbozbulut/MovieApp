@@ -9,6 +9,10 @@ import Foundation
 
 class GenreService {
     
+    static let shared = GenreService()
+    
+    init(){}
+    
     func fetchGenre(urlString: String, completion: @escaping (Result<[Genre], GenreNetworkError>)->Void) {
         guard let url = URL(string: urlString) else {
             completion(.failure(.badURL))
@@ -19,26 +23,22 @@ class GenreService {
             if error != nil {
                 completion(.failure(.taskError))
             }
+            
             guard let safeData = data else {
                 completion(.failure(.genreNotFound))
                 return
             }
-            if let movieData = self.parseJSON(safeData) {
-                completion(.success(movieData))
+            
+            BaseService.shared.parseJSON(type: Genres.self, data: safeData) { result in
+                switch result {
+                case .success(let genreList):
+                    completion(.success(genreList.results))
+                case .failure(_):
+                    completion(.failure(.genreNotFound))
+                }
             }
         }
         task.resume()
-    }
-    
-    func parseJSON(_ genreData : Data)->[Genre]? {
-        let decoder = JSONDecoder()
-        do {
-            let decodedData = try decoder.decode(Genres.self, from: genreData)
-            let genres = decodedData.genres
-                return genres
-        } catch{
-            return nil
-        }
     }
 }
 

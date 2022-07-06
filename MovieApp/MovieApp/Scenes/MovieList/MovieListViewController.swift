@@ -35,8 +35,6 @@ class MovieListViewController: UIViewController {
     }()
     
     let viewModel = MovieListViewModel()
-    private let movieService = MovieService()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,21 +71,7 @@ extension MovieListViewController: UISearchResultsUpdating {
         searchController.searchBar.searchTextField.textColor = .white
         guard let text = searchController.searchBar.text else {return}
         
-        if text.isEmpty {
-            viewModel.getAllMovies() // get singleton data
-            self.reloadData()
-        }
-        else {
-            let url = NetworkConstants.Urls.fetchSearchMovieURL(name: text)
-            movieService.fetchMovie(urlString: url) { result in
-                switch result {
-                case .success(let movieList):
-                    self.viewModel.searchedMovies(movieData: movieList)
-                    self.reloadData()
-                case .failure(let error):
-                    self.errorAlert(errorMessage: error.localizedDescription)
-                }
-            }
-        }
+        viewModel.fetchData(text: text)
+        reloadData()
     }
 }

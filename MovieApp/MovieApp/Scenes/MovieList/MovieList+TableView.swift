@@ -24,8 +24,7 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movie = viewModel.getMovies()[indexPath.row]
-        let destinationVC = UINavigationController(rootViewController: MovieDetailViewController(movie))
-        destinationVC.modalPresentationStyle = .fullScreen
-        present(destinationVC, animated: false)
+        let destinationVC = MovieDetailViewController(movie)
+        navigationController?.pushViewController(destinationVC, animated: false)
     }
 }

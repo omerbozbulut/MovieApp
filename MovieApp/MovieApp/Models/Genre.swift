@@ -7,10 +7,8 @@
 
 import Foundation
 
-var genres = [Genre]()
-
 struct Genres: Codable {
-    let genres: [Genre]
+    let results: [Genre]
 }
 
 struct Genre: Codable {

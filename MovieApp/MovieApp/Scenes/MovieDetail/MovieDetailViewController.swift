@@ -106,6 +106,6 @@ class MovieDetailViewController: UIViewController {
     }
     
     @objc func goBack() -> Void {
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: false)
     }
 }

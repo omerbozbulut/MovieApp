@@ -8,20 +8,21 @@
 import Foundation
 
 class MovieListViewModel{
+    private let movieService = MovieService()
     
-    private var genreList = genres
-    private var movieList = movies
+    private var genreList = MainData.shared.genres
+    private var movieList = MainData.shared.movies
     
     func getMovies()->[Movie]{
         return movieList
     }
     
     func getAllMovies(){
-        movieList = movies
+        movieList = MainData.shared.movies
     }
     
     func getGenres()->[Genre]{
-        genreList = genres
+        genreList = MainData.shared.genres
         return genreList
     }
     
@@ -41,5 +42,22 @@ class MovieListViewModel{
     
     func searchedMovies(movieData: [Movie]){
         movieList = movieData
+    }
+    
+    func fetchData(text: String){
+        if text.isEmpty {
+            getAllMovies() // get singleton data
+        }
+        else {
+            let url = NetworkConstants.Urls.fetchSearchMovieURL(name: text)
+            movieService.fetchMovie(urlString: url) { result in
+                switch result {
+                case .success(let movieList):
+                    self.searchedMovies(movieData: movieList)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
     }
 }

@@ -9,6 +9,10 @@ import Foundation
 
 class MovieService {
     
+    static let shared = MovieService()
+    
+    init(){}
+    
     func fetchMovie(urlString: String, completion: @escaping (Result<[Movie], MovieNetworkError>)->Void) {
         guard let url = URL(string: urlString) else {
             completion(.failure(.badURL))
@@ -19,27 +23,25 @@ class MovieService {
             if error != nil {
                 completion(.failure(.taskError))
             }
+            
             guard let safeData = data else {
                 completion(.failure(.moviesNotFound))
                 return
             }
-            if let movieData = self.parseJSON(safeData) {
-                completion(.success(movieData))
+            
+            BaseService.shared.parseJSON(type: Movies.self, data: safeData) { result in
+                switch result {
+                case .success(let movieList):
+                    completion(.success(movieList.results))
+                case .failure(_):
+                    completion(.failure(.moviesNotFound))
+                }
             }
         }
         task.resume()
     }
     
-    func parseJSON(_ movieData : Data)->[Movie]? {
-        let decoder = JSONDecoder()
-        do {
-            let decodedData = try decoder.decode(Movies.self, from: movieData)
-            let movies = decodedData.results
-                return movies
-        } catch{
-            return nil
-        }
-    }
+    
 }
 
 enum MovieNetworkError: Error {

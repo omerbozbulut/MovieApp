@@ -38,9 +38,8 @@ class SplashScreenViewController: UIViewController {
         animation.play(completion: .none)
         return animation
     }()
-    
-    var genreService = GenreService()
-    var movieService = MovieService()
+
+    let viewModel = SplashScreenViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,26 +60,12 @@ class SplashScreenViewController: UIViewController {
     }
     
     func configureData() {
-        
-        let movieUrl = NetworkConstants.Urls.fetchUpComingMoviesURL()
-        movieService.fetchMovie(urlString: movieUrl) { result in
+        viewModel.fetchData { result in
             switch result {
-            case .success(let movieList):
-                movies = movieList
+            case true:
                 self.completeDownload()
-            case .failure(let error):
-                self.errorAlert(errorMessage: error.localizedDescription)
-            }
-        }
-        
-        let genreUrl = NetworkConstants.Urls.fetchGenreListURL()
-        genreService.fetchGenre(urlString: genreUrl) { result in
-            switch result {
-            case .success(let genreList):
-                genres = genreList
-                self.completeDownload()
-            case .failure(let error):
-                self.errorAlert(errorMessage: error.localizedDescription)
+            case false:
+                print("Error")
             }
         }
     }
