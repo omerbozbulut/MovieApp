@@ -40,8 +40,6 @@ class MovieService {
         }
         task.resume()
     }
-    
-    
 }
 
 enum MovieNetworkError: Error {

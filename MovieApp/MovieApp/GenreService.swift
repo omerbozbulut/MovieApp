@@ -28,11 +28,11 @@ class GenreService {
                 completion(.failure(.genreNotFound))
                 return
             }
-            
+        
             BaseService.shared.parseJSON(type: Genres.self, data: safeData) { result in
                 switch result {
                 case .success(let genreList):
-                    completion(.success(genreList.results))
+                    completion(.success(genreList.genres))
                 case .failure(_):
                     completion(.failure(.genreNotFound))
                 }
