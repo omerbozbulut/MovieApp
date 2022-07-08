@@ -69,9 +69,13 @@ class MovieListViewController: UIViewController {
 extension MovieListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         searchController.searchBar.searchTextField.textColor = .white
+    
         guard let text = searchController.searchBar.text else {return}
         
+        viewModel.refresh = { () in
+            self.reloadData()
+        }
         viewModel.fetchData(text: text)
-        reloadData()
+        
     }
 }

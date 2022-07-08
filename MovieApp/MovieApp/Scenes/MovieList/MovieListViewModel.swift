@@ -13,6 +13,8 @@ class MovieListViewModel{
     private var genreList = MainData.shared.genres
     private var movieList = MainData.shared.movies
     
+    var refresh: (() -> Void)?
+    
     func getMovies()->[Movie]{
         return movieList
     }
@@ -59,5 +61,6 @@ class MovieListViewModel{
                 }
             }
         }
+        refresh?()
     }
 }
