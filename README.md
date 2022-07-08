@@ -6,7 +6,7 @@ The application can list movies, go to the details of the movie, add movies to y
 - [TMDB API](https://www.themoviedb.org)
 - MVVM
 - Table view
-- Network Layer
+- Generic Network Layer
 - URLSession
 - SPM
 - Cocoapods
